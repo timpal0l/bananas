@@ -1,0 +1,15 @@
+    #myCanvas {
+    display: block;
+    margin: 0 auto;
+   }
+
+    #image {
+    content:url(logo.png);
+    width:120px;
+    margin: 0 auto;
+    opacity:0.5;
+}​
+
+    #image:hover {
+    opacity:1.0;
+}​
