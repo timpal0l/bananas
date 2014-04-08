@@ -7,11 +7,16 @@ Your browser does not support the HTML5 canvas tag.
 </canvas>
 
 <script>
-
-var c = document.getElementById("myCanvas");
-var ctx = c.getContext("2d");
-ctx.fillStyle = "#FF0000";
-ctx.fillRect(300,300,150,75);
+window.onload = function(){
+	var c = document.getElementById("myCanvas");
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = "#000000";
+	ctx.fillRect(150,300,150,75);
+	
+	ctx.fillStyle = "FF0000";
+	ctx.arc(500,500,150,0,2 * Math.PI, false);
+	ctx.fill();
+	}
 
 </script>
 
