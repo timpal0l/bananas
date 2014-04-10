@@ -22,40 +22,35 @@ function generatePage(){
 	context.fillText("Hej hej :)", 400, 350);
 	
 	var bottomMenu = new Menu();
-	bottomMenu.widthSplit = 5;
-	context.stroke();
+	drawMenu(bottomMenu);
 	
 }
 
 function Menu() {
 	
-	var bendAngle = 30;
-	
-	this.widthSplit = 1;
+	this.bendAngle = 30;
+	this.widthSplit = 5;
 	this.h = 600;
-	
+}
+
+function drawMenu(menu) {
 	context.beginPath();
 	
 	//Style
 	context.lineWidth="1";
 	context.strokeStyle="black";
 	
-}
-
-function drawMenu(menu) {
-	
-	
 	//Draw the menu
-	context.moveTo((WIDTH/this.widthSplit), canvas.height);
-	context.arcTo((WIDTH/this.widthSplit), 600, ((WIDTH/this.widthSplit) + bendAngle), 600, bendAngle);
-	context.arcTo((WIDTH - (WIDTH/this.widthSplit)), 600, (WIDTH - (WIDTH/this.widthSplit)), 630, 30);
-	context.arcTo((WIDTH - (WIDTH/this.widthSplit)), canvas.height, (WIDTH - (WIDTH/this.widthSplit)), canvas.height, 0);
-	
+	context.moveTo((WIDTH/menu.widthSplit), canvas.height);
+	context.arcTo((WIDTH/menu.widthSplit), 600, ((WIDTH/menu.widthSplit) + menu.bendAngle), 600, menu.bendAngle);
+	context.arcTo((WIDTH - (WIDTH/menu.widthSplit)), 600, (WIDTH - (WIDTH/menu.widthSplit)), 630, menu.bendAngle);
+	context.arcTo((WIDTH - (WIDTH/menu.widthSplit)), canvas.height, (WIDTH - (WIDTH/menu.widthSplit)), canvas.height, 0);
+	context.stroke();
 }
 
 function moveMenuDown(){
-	var canvas = document.getElementById('myCanvas');
-	var context = canvas.getContext('2d');
+	
+
 	
 	
 	
