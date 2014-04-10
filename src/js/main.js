@@ -1,9 +1,7 @@
-
 var HEIGHT = 768;
 var WIDTH = 1024;
 var canvas;
 var context;
-
 
 window.onload = function(){
 	generatePage();
@@ -22,7 +20,5 @@ function generatePage(){
 	context.fillText("Hej hej :)", 400, 350);
 	
 	var bottomMenu = new Menu();
-	drawMenu(bottomMenu);
-	
+	drawMenu(bottomMenu);	
 }
-
