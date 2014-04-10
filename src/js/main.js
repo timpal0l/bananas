@@ -22,42 +22,7 @@ function generatePage(){
 	context.fillText("Hej hej :)", 400, 350);
 	
 	var bottomMenu = new Menu();
-	bottomMenu.widthSplit = 5;
-	context.stroke();
+	drawMenu(bottomMenu);
 	
 }
 
-function Menu() {
-	
-	var bendAngle = 30;
-	
-	this.widthSplit = 1;
-	this.h = 600;
-	
-	context.beginPath();
-	
-	//Style
-	context.lineWidth="1";
-	context.strokeStyle="black";
-	
-}
-
-function drawMenu(menu) {
-	
-	
-	//Draw the menu
-	context.moveTo((WIDTH/this.widthSplit), canvas.height);
-	context.arcTo((WIDTH/this.widthSplit), 600, ((WIDTH/this.widthSplit) + bendAngle), 600, bendAngle);
-	context.arcTo((WIDTH - (WIDTH/this.widthSplit)), 600, (WIDTH - (WIDTH/this.widthSplit)), 630, 30);
-	context.arcTo((WIDTH - (WIDTH/this.widthSplit)), canvas.height, (WIDTH - (WIDTH/this.widthSplit)), canvas.height, 0);
-	
-}
-
-function moveMenuDown(){
-	var canvas = document.getElementById('myCanvas');
-	var context = canvas.getContext('2d');
-	
-	
-	
-	
-}
