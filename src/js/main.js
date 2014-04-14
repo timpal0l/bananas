@@ -1,9 +1,21 @@
 HEIGHT = 700;
 WIDTH = 1300;
 
+//Request frame from browser
+window.requestAnimFrame = (function(){
+    return  window.requestAnimationFrame       ||
+            window.webkitRequestAnimationFrame ||
+            window.mozRequestAnimationFrame    ||
+            window.oRequestAnimationFrame      ||
+            window.msRequestAnimationFrame     ||
+            function( callback ){
+              window.setTimeout(callback, 1000 / 60);
+            };
+})();
+
 window.onload = function(){
 	setCanvas();
-	window.addEventListener("mousemove", foo, false);
+	window.addEventListener("mousemove", foo, false);	
 }
 
 function setCanvas(){
@@ -19,6 +31,7 @@ function setCanvas(){
 
 }
 
+	
 function foo(e){
 	//context.clearRect(700,200,700,200);
 	//funny function that follows the mouse!
