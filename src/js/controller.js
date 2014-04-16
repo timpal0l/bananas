@@ -1,3 +1,5 @@
+
+
 function Menu(height,width,bendAngle) {
 	
 	//Angle on the rounded corner
@@ -9,33 +11,26 @@ function Menu(height,width,bendAngle) {
 	this.w = (WIDTH/this.widthSplit)
 	this.h = HEIGHT - height;
 	
+	//Moving direction
+	this.dir = 0;
 	
-}
-
-function animate(bottomMenu,dir){
-	// update
-    var linearSpeed = 5;
-     
-    if (dir > 0) {
-    	dir = (bottomMenu.h > HEIGHT) ? 0 : 1;
-    }   
-   
-    // Move
-    bottomMenu.h += linearSpeed * dir; 
-
-    // clear
-    context.clearRect(0, 0, WIDTH, HEIGHT);
-
-    drawMenu(bottomMenu);
-
-    // request new frame
-    requestAnimFrame(function() {
-    	animate(bottomMenu,dir);
-        });
-}	
-
-function moveMenuDown(speed){
+	//Moving speed
+	this.linearSpeed = 5;
 	
+	this.drawMenu = function() {
+		drawMenu(this);
+		
+	}
 	
+	//Update the position of the menu
+	this.update = function() {
+		
+		if (this.dir > 0) {
+	    	this.dir = (this.h > HEIGHT) ? 0 : 1;
+	    }   
+	   
+	    // Move
+	    this.h += this.linearSpeed * this.dir;
+	}
 	
 }

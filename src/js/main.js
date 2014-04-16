@@ -26,17 +26,11 @@ function setCanvas(){
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
 
-	var bottomMenu = new Menu(200,5,30);
-	animate(bottomMenu,0);
+	bottomMenu = new Menu(200,5,30);
+	animate();
 	
 
 }
-
-function update(){ 
-	
-	
-}
-
 	
 function foo(e){
 	//context.clearRect(700,200,700,200);
@@ -49,3 +43,21 @@ function foo(e){
 	context.font = "bold 20px Consolas";
 	context.fillText(".", xPos - 192, yPos);
 }
+
+
+//This is the animation loop, put all objects here!!
+function animate(){
+		// update
+	    bottomMenu.update();
+
+	    // clear
+	    context.clearRect(0, 0, WIDTH, HEIGHT);
+
+	    //Draw
+	    bottomMenu.drawMenu();
+	
+	    // request new frame
+	    requestAnimFrame(function() {
+	    	animate();
+	    });
+}		
