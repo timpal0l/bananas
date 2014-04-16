@@ -26,9 +26,15 @@ function setCanvas(){
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
 
-	var bottomMenu = new Menu();
-	drawMenu(bottomMenu);	
+	var bottomMenu = new Menu(200,5,30);
+	animate(bottomMenu,0);
+	
 
+}
+
+function update(){ 
+	
+	
 }
 
 	
