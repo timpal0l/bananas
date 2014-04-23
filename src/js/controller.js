@@ -20,7 +20,13 @@ function Menu(height, width, bendAngle) {
 		drawMenu(this);
 
 	};
+	//this.pos = "show";
+	this.drawSideMenu= function(){
+		drawSideMenu(this);
+	};
 
+
+	
 	// Update the position of the menu
 	this.update = function() {
 
@@ -31,4 +37,6 @@ function Menu(height, width, bendAngle) {
 		// Move
 		this.h += this.linearSpeed * this.dir;
 	};
+
+	
 }

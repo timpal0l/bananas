@@ -23,7 +23,9 @@ function setCanvas() {
 	canvas.width = WIDTH;
 
 	bottomMenu = new Menu(200, 5, 30);
+	sideMenu = new Menu(5,200,30);
 	animate();
+	
 
 }
 
@@ -31,13 +33,14 @@ function setCanvas() {
 function animate() {
 	// update
 	bottomMenu.update();
+        sideMenu.update();
 
 	// clear
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 
 	// Draw
 	bottomMenu.drawMenu();
-
+	sideMenu.drawSideMenu();
 	// request new frame
 	requestAnimFrame(function() {
 		animate();

@@ -15,3 +15,13 @@ function drawMenu(menu) {
 			canvas.height, 0);
 	context.stroke();
 }
+
+function drawSideMenu(menu){
+	context.moveTo(0,70);
+	context.arcTo(150,70,150,170,menu.bendAngle);
+	context.arcTo(150,450, 120, 450, menu.bendAngle);
+	context.arcTo(0,450,0,450, 0);
+	context.stroke();
+}
+
+
