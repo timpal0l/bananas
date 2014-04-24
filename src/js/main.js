@@ -23,7 +23,7 @@ function setCanvas() {
 	canvas.width = WIDTH;
 
 	bottomMenu = new Menu(200, 5, 30);
-	sideMenu = new Menu(5,200,30);
+	sideMenu = new Smenu(3,150,30);
 	animate();
 	
 

@@ -17,10 +17,10 @@ function drawMenu(menu) {
 }
 
 function drawSideMenu(menu){
-	context.moveTo(0,70);
-	context.arcTo(150,70,150,170,menu.bendAngle);
-	context.arcTo(150,450, 120, 450, menu.bendAngle);
-	context.arcTo(0,450,0,450, 0);
+	context.moveTo(menu.startx,menu.starty);
+	context.arcTo(menu.wi,menu.starty,menu.wi,(menu.wi + menu.bendAngle),menu.bendAngle);
+	context.arcTo(menu.wi,menu.he,(menu.wi - menu.bendAngle),menu.he, menu.bendAngle);
+	context.arcTo(menu.startx,menu.he,menu.startx,menu.he, 0);
 	context.stroke();
 }
 
