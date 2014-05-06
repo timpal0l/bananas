@@ -17,10 +17,13 @@ function drawMenu(menu) {
 }
 
 function drawSideMenu(menu){
+	var Cogimg = document.createElement('img');
+	Cogimg.src = "/home/andrea/Bananasgrupp/b2/bananas/lib/cog.png";
 	context.moveTo(menu.startx,menu.starty);
 	context.arcTo(menu.wi,menu.starty,menu.wi,(menu.wi + menu.bendAngle),menu.bendAngle);
 	context.arcTo(menu.wi,menu.he,(menu.wi - menu.bendAngle),menu.he, menu.bendAngle);
 	context.arcTo(menu.startx,menu.he,menu.startx,menu.he, 0);
+	context.drawImage(Cogimg, 10,60);
 	context.stroke();
 }
 
