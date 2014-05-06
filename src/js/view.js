@@ -18,14 +18,20 @@ function drawMenu(menu) {
 
 function drawSideMenu(menu){
 	var Cogimg = document.createElement('img');
-	Cogimg.src = "/home/andrea/Bananasgrupp/b2/bananas/lib/cog.png";
+	Cogimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQWJKxBzR61HZo8WimnGtIri5ZaodiZu9woVuTcm7r3O2uL1bYBrw";
+	var Zomimg = document.createElement('img');
+	Zomimg.src = "http://cdns2.freepik.com/bild-fritt/forstoringsglas-sok_318-30911.jpg";
+	
 	context.moveTo(menu.startx,menu.starty);
 	context.arcTo(menu.wi,menu.starty,menu.wi,(menu.wi + menu.bendAngle),menu.bendAngle);
 	context.arcTo(menu.wi,menu.he,(menu.wi - menu.bendAngle),menu.he, menu.bendAngle);
 	context.arcTo(menu.startx,menu.he,menu.startx,menu.he, 0);
-	context.drawImage(Cogimg, 10,60);
+	context.drawImage(Cogimg, 10,80);
+	context.drawImage(Zomimg, 10,230);
 	context.stroke();
+	
 }
+
 
 
 function drawshape(context, shape, fill) {
@@ -36,4 +42,4 @@ function drawshape(context, shape, fill) {
   if (shape.x + shape.w < 0 || shape.y + shape.h < 0) return;
   
   context.fillRect(shape.x,shape.y,shape.w,shape.h);
-}
+};
