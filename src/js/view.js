@@ -25,3 +25,12 @@ function drawSideMenu(menu){
 }
 
 
+function drawshape(context, shape, fill) {
+  context.fillStyle = fill;
+  
+  // We can skip the drawing of elements that have moved off the screen:
+  if (shape.x > WIDTH || shape.y > HEIGHT) return; 
+  if (shape.x + shape.w < 0 || shape.y + shape.h < 0) return;
+  
+  context.fillRect(shape.x,shape.y,shape.w,shape.h);
+}

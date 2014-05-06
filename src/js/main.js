@@ -1,5 +1,13 @@
 HEIGHT = 700;
 WIDTH = 1300;
+mousePressed = false;
+mouse = null;
+canvas = null;
+context = null;
+glasspanecanvas = null;
+gpctx = null;
+boxes = [];
+
 
 window.onload = function() {
 	setCanvas();
@@ -18,12 +26,20 @@ function setCanvas() {
 
 	canvas = document.getElementById('myCanvas');
 	context = canvas.getContext('2d');
+	glasspanecanvas = document.createElement('canvas');
+	gpctx = glasspanecanvas.getContext('2d');
 
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
+	glasspanecanvas.height = HEIGHT;
+	glasspanecanvas.width = WIDTH;
 
-	bottomMenu = new Menu(200, 5, 30);
+	canvas.onmousedown = myDown;
+	canvas.onmouseup = myUp;
+
+	//bottomMenu = new Menu(200, 5, 30);
 	sideMenu = new Smenu(3,150,30);
+	addRect(200, 200, 40, 40, '#FFC02B');
 	animate();
 	
 
@@ -32,15 +48,22 @@ function setCanvas() {
 // This is the animation loop, put all objects here!!
 function animate() {
 	// update
-	bottomMenu.update();
-        sideMenu.update();
+	//bottomMenu.update();
+    sideMenu.update();
+
+    if (mousePressed == true) {
+    	hitBox(mouse);
+    }
+
 
 	// clear
 	context.clearRect(0, 0, WIDTH, HEIGHT);
+	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
 
 	// Draw
-	bottomMenu.drawMenu();
+	//bottomMenu.drawMenu();
 	sideMenu.drawSideMenu();
+	drawRects();
 	// request new frame
 	requestAnimFrame(function() {
 		animate();
