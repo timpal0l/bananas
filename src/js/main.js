@@ -50,7 +50,7 @@ function animate() {
 	// update
 	//bottomMenu.update();
     sideMenu.update();
-
+	
     if (mousePressed == true) {
     	hitBox(mouse);
     }

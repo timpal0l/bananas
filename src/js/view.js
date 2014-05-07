@@ -18,20 +18,23 @@ function drawMenu(menu) {
 
 function drawSideMenu(menu){
 	var Cogimg = document.createElement('img');
-	Cogimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQWJKxBzR61HZo8WimnGtIri5ZaodiZu9woVuTcm7r3O2uL1bYBrw";
+	//Cogimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQWJKxBzR61HZo8WimnGtIri5ZaodiZu9woVuTcm7r3O2uL1bYBrw";
+	Cogimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
 	var Zomimg = document.createElement('img');
-	Zomimg.src = "http://cdns2.freepik.com/bild-fritt/forstoringsglas-sok_318-30911.jpg";
-	
+	//Zomimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS2sCJoPT2qfS_6W9dfE13v4ARwwRa2LPqi0Qv8VptBVO05Mc7FNA";
+	Zomimg.src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTg3L-rt7eYyYf8RoB9tiwYZOzzAGx7nZNHi5xsbZ2TgLK5js6W";
+	var Eimg = document.createElement('img');
+	Eimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlAD5l6_itGWKlPWu34y8JCjj-ItKNXmaODpkR83b7Flb4MkJ1Q";
 	context.moveTo(menu.startx,menu.starty);
 	context.arcTo(menu.wi,menu.starty,menu.wi,(menu.wi + menu.bendAngle),menu.bendAngle);
 	context.arcTo(menu.wi,menu.he,(menu.wi - menu.bendAngle),menu.he, menu.bendAngle);
 	context.arcTo(menu.startx,menu.he,menu.startx,menu.he, 0);
-	context.drawImage(Cogimg, 10,80);
-	context.drawImage(Zomimg, 10,230);
+	context.drawImage(Cogimg, 15,90);
+	context.drawImage(Zomimg, 20,200);
+	context.drawImage(Eimg,10,300);
 	context.stroke();
 	
 }
-
 
 
 function drawshape(context, shape, fill) {
