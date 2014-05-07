@@ -38,6 +38,12 @@ function setCanvas() {
 	canvas.onmouseup = myUp;
 
 	//bottomMenu = new Menu(200, 5, 30);
+	//var Cog = document.createElement('img'); 
+	//Cog.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
+	CImage();
+	ZImage();
+	CaImage();
+	
 	sideMenu = new Smenu(3,150,30);
 	addRect(200, 200, 40, 40, '#FFC02B');
 	animate();
@@ -50,7 +56,8 @@ function animate() {
 	// update
 	//bottomMenu.update();
     sideMenu.update();
-	
+
+		
     if (mousePressed == true) {
     	hitBox(mouse);
     }
@@ -63,6 +70,10 @@ function animate() {
 	// Draw
 	//bottomMenu.drawMenu();
 	sideMenu.drawSideMenu();
+	//Cog.drawCogImage();
+	CImage();
+	ZImage();
+	CaImage();
 	drawRects();
 	// request new frame
 	requestAnimFrame(function() {

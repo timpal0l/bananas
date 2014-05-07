@@ -17,23 +17,32 @@ function drawMenu(menu) {
 }
 
 function drawSideMenu(menu){
-	var Cogimg = document.createElement('img');
-	//Cogimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQWJKxBzR61HZo8WimnGtIri5ZaodiZu9woVuTcm7r3O2uL1bYBrw";
-	Cogimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
-	var Zomimg = document.createElement('img');
-	//Zomimg.src = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcS2sCJoPT2qfS_6W9dfE13v4ARwwRa2LPqi0Qv8VptBVO05Mc7FNA";
-	Zomimg.src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTg3L-rt7eYyYf8RoB9tiwYZOzzAGx7nZNHi5xsbZ2TgLK5js6W";
-	var Eimg = document.createElement('img');
-	Eimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlAD5l6_itGWKlPWu34y8JCjj-ItKNXmaODpkR83b7Flb4MkJ1Q";
+	
+	
 	context.moveTo(menu.startx,menu.starty);
 	context.arcTo(menu.wi,menu.starty,menu.wi,(menu.wi + menu.bendAngle),menu.bendAngle);
 	context.arcTo(menu.wi,menu.he,(menu.wi - menu.bendAngle),menu.he, menu.bendAngle);
 	context.arcTo(menu.startx,menu.he,menu.startx,menu.he, 0);
-	context.drawImage(Cogimg, 15,90);
-	context.drawImage(Zomimg, 20,200);
-	context.drawImage(Eimg,10,300);
 	context.stroke();
 	
+}
+function drawCogImage(){
+	var Cogimg = document.createElement('img');
+	Cogimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
+	context.drawImage(Cogimg, 15,90);
+
+}
+
+function drawZomImage(){
+	var Zomimg = document.createElement('img');
+	Zomimg.src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTg3L-rt7eYyYf8RoB9tiwYZOzzAGx7nZNHi5xsbZ2TgLK5js6W";
+	context.drawImage(Zomimg, 20,200);
+}
+
+function drawCatImage(){
+	var Eimg = document.createElement('img');
+	Eimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlAD5l6_itGWKlPWu34y8JCjj-ItKNXmaODpkR83b7Flb4MkJ1Q";
+	context.drawImage(Eimg,10,300);
 }
 
 

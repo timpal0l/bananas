@@ -70,8 +70,19 @@ function Smenu(height, width, bendAngle) {
 		// Move
 		this.wi += this.linearSpeed * this.dir;
 	};
-
-	
 }
+
+function CImage(){
+drawCogImage();
+}
+
+function ZImage(){
+drawZomImage();
+}
+
+function CaImage(){
+drawCatImage();
+}
+
 
 
