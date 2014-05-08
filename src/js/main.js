@@ -37,6 +37,7 @@ function setCanvas() {
 
 	world = new World();
 	world.addRect(200, 200, 40, 40, '#FFC02B');
+	world.addRect(300, 300, 40, 40, '#FFC02B');
 
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
