@@ -43,17 +43,7 @@ function Menu(height, width, bendAngle) {
 
 
 
-function CImage(){
-drawCogImage();
-}
 
-function ZImage(){
-drawZomImage();
-}
-
-function CaImage(){
-drawCatImage();
-}
 
 
 

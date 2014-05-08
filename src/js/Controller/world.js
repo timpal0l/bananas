@@ -6,17 +6,21 @@ function World() {
 	var offsetx, offsety;
 	var me = this;
 
+	this.sideMenu = new Smenu(3,150,30);
+
 	this.addRect = function(x, y, w, h, fill) {
 	  var rect = new Box(x, y, w, h, fill);
 	  boxes.push(rect);
-	}
+	};
 
-	this.drawRects = function() {
+
+	this.draw = function() {
+		this.sideMenu.draw();
 		var l = boxes.length;
 	    for (var i = 0; i < l; i++) {
 	    	boxes[i].drawBox();
 	    }
-	}
+	};
 
 	this.myMove = function(e) {
 	  if (isDrag){
@@ -26,7 +30,7 @@ function World() {
 	    mySel.y = my - offsety;   
 	    
 	  }
-	}
+	};
 
 	this.hitBox = function(e) {
 		  this.getMouse(e);
@@ -54,18 +58,18 @@ function World() {
 		  }
 	  // havent returned means we have selected nothing
 	  mySel = null;
-	}
+	};
 
 	this.myDown = function(e) { 
 		mouse = e;
 	  	mousePressed = true;
-	}
+	};
 
 	this.myUp = function() { 
 	  isDrag = false;
 	  canvas.onmousemove = null;
 	  mousePressed = false;
-	}
+	};
 
 	this.getMouse = function(e) {
 	      var element = canvas, offsetX = 0, offsetY = 0;
@@ -80,6 +84,6 @@ function World() {
 
 	      mx = e.pageX - offsetX;
 	      my = e.pageY - offsetY;
-	}
+	};
 
 }

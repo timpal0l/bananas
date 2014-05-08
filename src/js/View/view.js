@@ -26,24 +26,11 @@ function drawSideMenu(menu){
 	context.stroke();
 	
 }
-function drawCogImage(){
-	var Cogimg = document.createElement('img');
-	Cogimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
-	context.drawImage(Cogimg, 15,90);
 
+function drawImg(img, x, y, w, h) {
+	context.drawImage(img, x, y, w, h);
 }
 
-function drawZomImage(){
-	var Zomimg = document.createElement('img');
-	Zomimg.src = "https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcTg3L-rt7eYyYf8RoB9tiwYZOzzAGx7nZNHi5xsbZ2TgLK5js6W";
-	context.drawImage(Zomimg, 20,200);
-}
-
-function drawCatImage(){
-	var Eimg = document.createElement('img');
-	Eimg.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqlAD5l6_itGWKlPWu34y8JCjj-ItKNXmaODpkR83b7Flb4MkJ1Q";
-	context.drawImage(Eimg,10,300);
-}
 
 
 
@@ -55,4 +42,4 @@ function drawshape(context, shape, fill) {
   if (shape.x + shape.w < 0 || shape.y + shape.h < 0) return;
   
   context.fillRect(shape.x,shape.y,shape.w,shape.h);
-};
+}

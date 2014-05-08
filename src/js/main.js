@@ -36,19 +36,18 @@ function setCanvas() {
 	glasspanecanvas.width = WIDTH;
 
 	world = new World();
+	world.addRect(200, 200, 40, 40, '#FFC02B');
 
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
+	canvas.onclick = world.sideMenu.myClick;
 
 	//bottomMenu = new Menu(200, 5, 30);
 	//var Cog = document.createElement('img'); 
 	//Cog.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQA4V5k_zrWMsGyRS1boIQZnIMPSAFhH8jGAo67IDxHhxuJawuE";
-	CImage();
-	ZImage();
-	CaImage();
 	
-	sideMenu = new Smenu(3,150,30);
-	world.addRect(200, 200, 40, 40, '#FFC02B');
+	
+	
 	animate();
 	
 
@@ -58,7 +57,7 @@ function setCanvas() {
 function animate() {
 	// update
 	//bottomMenu.update();
-    sideMenu.update();
+    //sideMenu.update();
 
 		
     if (mousePressed == true) {
@@ -72,12 +71,10 @@ function animate() {
 
 	// Draw
 	//bottomMenu.drawMenu();
-	sideMenu.drawSideMenu();
+	//sideMenu.drawSideMenu();
 	//Cog.drawCogImage();
-	CImage();
-	ZImage();
-	CaImage();
-	world.drawRects();
+	//sideMenu.drawIcons();
+	world.draw();
 	// request new frame
 	requestAnimFrame(function() {
 		animate();

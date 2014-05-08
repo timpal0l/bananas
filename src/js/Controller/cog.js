@@ -11,7 +11,7 @@ function Box(x, y, w, h, fill) {
 
   this.drawBox = function() {
   	drawshape(context, this, this.fill);
-  }
+  };
 }
 
 
@@ -36,15 +36,15 @@ function Cog(shape, x, y, height, width, direction, speed, color) {
 
 	this.draw = function() {
 
-    // Add stuff you want drawn in the background all the time here
-    
-    // draw all boxes
-    var l = boxes.length;
-    for (var i = 0; i < l; i++) {
-        drawshape(ctx, boxes[i], boxes[i].fill);
-    }
+	    // Add stuff you want drawn in the background all the time here
+	    
+	    // draw all boxes
+	    var l = boxes.length;
+	    for (var i = 0; i < l; i++) {
+	        drawshape(ctx, boxes[i], boxes[i].fill);
+	    }
 
-	}
+	};
 }
 
 /*
