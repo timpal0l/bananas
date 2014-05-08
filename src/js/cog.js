@@ -54,6 +54,7 @@ function hitBox(e){
 	      mySel.y = my - offsety;
 	      isDrag = true;
 	      canvas.onmousemove = myMove;
+	      mousePressed = false
 	      return;
 	    } 
 	  }
@@ -69,6 +70,7 @@ function myDown(e){
 function myUp(){
   isDrag = false;
   canvas.onmousemove = null;
+  mousePressed = false;
 }
 
 function getMouse(e) {
