@@ -7,6 +7,7 @@ context = null;
 glasspanecanvas = null;
 gpctx = null;
 boxes = [];
+world = null;
 
 
 window.onload = function() {
@@ -34,8 +35,10 @@ function setCanvas() {
 	glasspanecanvas.height = HEIGHT;
 	glasspanecanvas.width = WIDTH;
 
-	canvas.onmousedown = myDown;
-	canvas.onmouseup = myUp;
+	world = new World();
+
+	canvas.onmousedown = world.myDown;
+	canvas.onmouseup = world.myUp;
 
 	//bottomMenu = new Menu(200, 5, 30);
 	//var Cog = document.createElement('img'); 
@@ -45,7 +48,7 @@ function setCanvas() {
 	CaImage();
 	
 	sideMenu = new Smenu(3,150,30);
-	addRect(200, 200, 40, 40, '#FFC02B');
+	world.addRect(200, 200, 40, 40, '#FFC02B');
 	animate();
 	
 
@@ -59,7 +62,7 @@ function animate() {
 
 		
     if (mousePressed == true) {
-    	hitBox(mouse);
+    	world.hitBox(mouse);
     }
 
 
@@ -74,7 +77,7 @@ function animate() {
 	CImage();
 	ZImage();
 	CaImage();
-	drawRects();
+	world.drawRects();
 	// request new frame
 	requestAnimFrame(function() {
 		animate();

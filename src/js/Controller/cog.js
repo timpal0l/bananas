@@ -1,109 +1,26 @@
 /* A cog class */
-var isDrag = false;
-
-var mx, my; // mouse coordinates
-var mySel; 
-var offsetx, offsety;
 
 
-function Box() {
-  this.x = 0;
-  this.y = 0;
-  this.w = 1; // default width and height?
-  this.h = 1;
-  this.fill = '#444444';
-}
 
-function addRect(x, y, w, h, fill) {
-  var rect = new Box;
-  rect.x = x;
-  rect.y = y;
-  rect.w = w
-  rect.h = h;
-  rect.fill = fill;
-  boxes.push(rect);
-}
+function Box(x, y, w, h, fill) {
+  this.x = x;
+  this.y = y;
+  this.w = w; // default width and height?
+  this.h = h;
+  this.fill = fill;
 
-function myMove(e){
-  if (isDrag){
-    getMouse(e);
-    
-    mySel.x = mx - offsetx;
-    mySel.y = my - offsety;   
-    
+  this.drawBox = function() {
+  	drawshape(context, this, this.fill);
   }
 }
 
-function hitBox(e){
-	  getMouse(e);
-	  var l = boxes.length;
-	  for (var i = l-1; i >= 0; i--) {
-	    // draw shape onto ghost context
-	    drawshape(gpctx, boxes[i], 'black');
-	    
-	    // get image data at the mouse x,y pixel
-	    var imageData = gpctx.getImageData(mx, my, 1, 1);
-	    var index = (mx + my * imageData.width) * 4;
-	    
-	    // if the mouse pixel exists, select and break
-	    if (imageData.data[3] > 0) {
-	      mySel = boxes[i];
-	      offsetx = mx - mySel.x;
-	      offsety = my - mySel.y;
-	      mySel.x = mx - offsetx;
-	      mySel.y = my - offsety;
-	      isDrag = true;
-	      canvas.onmousemove = myMove;
-	      mousePressed = false
-	      return;
-	    } 
-	  }
-  // havent returned means we have selected nothing
-  mySel = null;
-}
-
-function myDown(e){
-	mouse = e;
-  	mousePressed = true;
-}
-
-function myUp(){
-  isDrag = false;
-  canvas.onmousemove = null;
-  mousePressed = false;
-}
-
-function getMouse(e) {
-      var element = canvas, offsetX = 0, offsetY = 0;
-
-      if (element.offsetParent) {
-        do {
-          offsetX += element.offsetLeft;
-          offsetY += element.offsetTop;
-        } while ((element = element.offsetParent));
-      }
 
 
-      mx = e.pageX - offsetX;
-      my = e.pageY - offsetY;
-}
 
-function myMove(e){
-  if (isDrag){
-    getMouse(e);
-    
-    mySel.x = mx - offsetx;
-    mySel.y = my - offsety;   
-    
-  }
-}
 
-function drawRects() {
-	var l = boxes.length;
-    for (var i = 0; i < l; i++) {
-        drawshape(context, boxes[i], boxes[i].fill);
-    }
-}
+
+
+
 
 
 function Cog(shape, x, y, height, width, direction, speed, color) {

@@ -46,6 +46,7 @@ function drawCatImage(){
 }
 
 
+
 function drawshape(context, shape, fill) {
   context.fillStyle = fill;
   
