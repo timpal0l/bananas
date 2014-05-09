@@ -103,7 +103,7 @@ function animate(cogs, lastTime) {
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
 
 	world.draw();
-	world.sideMenu.update();
+	//world.sideMenu.update();
 
 	for ( var i = 0; i < cogs.length; i++) {
 		var cog = cogs[i];
