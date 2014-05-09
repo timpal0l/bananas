@@ -13,7 +13,8 @@ function Smenu(height, width, bendAngle, parent) {
 	var me = this;
 	var mx;
 	var my;
-
+	var color= 'black';
+	var count = 0;
 
 	// Load images
 	var cogimg = document.createElement('img');
@@ -73,13 +74,14 @@ function Smenu(height, width, bendAngle, parent) {
 		var cogB = me.cogButton;
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
+		var cat = me.catButton;
 
 		if (mx > cogB.x 
 		    && mx < cogB.w + cogB.x
 			&& my > cogB.y
 			&& my < cogB.h + cogB.y) {
 
-			parent.addRect(300, 300, 40, 40, '#77DD44');
+			parent.addRect(300, 300, 40, 40, color);
 		}
 	
 		if(mx > rarrow.x 
@@ -97,7 +99,20 @@ function Smenu(height, width, bendAngle, parent) {
 			me.dir = -1;
 			me.update();
 		}
-		
+		if(mx > cat.x 
+		    && mx < cat.w + cat.x
+			&& my > cat.y
+			&& my < cat.h + cat.y){
+			if(count == 0){
+				count = count +1;
+				color = 'red';			
+			}
+
+		else if (count == 1){ color = 'green'; count = count +1;}
+		else if (count == 2){color = 'blue'; count = count +1;}
+		else if (count == 3){ color = 'brown'; count = count +1;}
+		else if(count == 4){ color = 'black'; count = 0;}
+	}
 		
 		
 	};
