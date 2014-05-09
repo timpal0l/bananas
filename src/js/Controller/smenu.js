@@ -49,6 +49,9 @@ function Smenu(height, width, bendAngle, parent) {
 
 		// Move
 		this.wi += this.linearSpeed * this.dir;
+		this.cogButton.x += 5 * this.dir;
+		this.zoomButton.x += 5 * this.dir;
+		this.catButton.x += 5 * this.dir;
 	};
 
 	this.myClick = function(e) {
