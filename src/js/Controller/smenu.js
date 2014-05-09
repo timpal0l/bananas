@@ -22,11 +22,13 @@ function Smenu(height, width, bendAngle, parent) {
 	zoomimg.src = "../../lib/zoom.jpg";
 	var catimg = document.createElement('img');
 	catimg.src = "../../lib/cat.jpg";
+	
 
 	// Create buttons
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
 	this.zoomButton = new Button(zoomimg, 30, 220, 80, 80);
 	this.catButton = new Button(catimg, 30, 320, 80, 80);
+	
 
 	// Moving speed
 	this.linearSpeed = 5;

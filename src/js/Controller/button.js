@@ -9,3 +9,5 @@ function Button(img, x, y, w, h) {
 		drawImg(this.img, this.x, this.y, this.w, this.h);
 	};
 }
+
+

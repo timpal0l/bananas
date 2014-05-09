@@ -30,6 +30,7 @@ function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }
 
+
 function drawShape(context, shape, fill) {
 	context.fillStyle = fill;
 
