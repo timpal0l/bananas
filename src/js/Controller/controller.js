@@ -1,49 +1,38 @@
 function Menu(height, width, bendAngle) {
 
-	// Angle on the rounded corner
-	this.bendAngle = bendAngle;
+    // Angle on the rounded corner
+    this.bendAngle = bendAngle;
 
-	// The width of the canvas divided by a number, the bigger the number the
-	// closer to the edge
-	this.widthSplit = width;
+    // The width of the canvas divided by a number, the bigger the number the
+    // closer to the edge
+    this.widthSplit = width;
 
-	this.w = (WIDTH / this.widthSplit);
-	this.h = HEIGHT - height;
+    this.w = (WIDTH / this.widthSplit);
+    this.h = HEIGHT - height;
 
-	// Moving direction
-	this.dir = 0;
+    // Moving direction
+    this.dir = 0;
 
-	// Moving speed
-	this.linearSpeed = 5;
+    // Moving speed
+    this.linearSpeed = 5;
 
-	this.drawMenu = function() {
-		drawMenu(this);
+    this.drawMenu = function() {
+        drawMenu(this);
 
-	};
-	//this.pos = "show";
-	this.drawSideMenu= function(){
-		drawSideMenu(this);
-	};
+    };
+    //this.pos = "show";
+    this.drawSideMenu = function() {
+        drawSideMenu(this);
+    };
 
+    // Update the position of the menu
+    this.update = function() {
 
-	
-	// Update the position of the menu
-	this.update = function() {
+        if (this.dir > 0) {
+            this.dir = (this.h > HEIGHT) ? 0 : 1;
+        }
 
-		if (this.dir > 0) {
-			this.dir = (this.h > HEIGHT) ? 0 : 1;
-		}
-
-		// Move
-		this.h += this.linearSpeed * this.dir;
-	};
-
-	
+        // Move
+        this.h += this.linearSpeed * this.dir;
+    };
 }
-
-
-
-
-
-
-

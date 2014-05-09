@@ -1,15 +1,15 @@
 #myCanvas {
-	display: block;
-	margin: 0 auto;
-	border: 1px solid #c3c3c3;
-	background: white;
+	display:block;
+	margin:0 auto;
+	border:1px solid #c3c3c3;
+	background:white;
 }
 #image {
-	content: url(../../lib/logo.png);
-	width: 120px;
-	margin: 0 auto;
-	opacity: 0.2;
+	content:url(../../lib/logo.png);
+	width:120px;
+	margin:0 auto;
+	opacity:0.2;
 }
 #image:hover {
-	opacity: 0.7;
+	opacity:0.7;
 }
