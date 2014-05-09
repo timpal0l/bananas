@@ -1,14 +1,23 @@
 function World() {
 	var isDrag = false;
 
-	var mx, my;
+	var mx;
+	var my;
 	// mouse coordinates
 	var mySel;
-	var offsetx, offsety;
+	var offsetx;
+	var offsety;
 	var me = this;
 
-	this.sideMenu = new Smenu(3, 150, 30);
+	this.getMx = function() {
+		return mx;
+	};
 
+	this.getMy = function() {
+		return my;
+	};
+
+	this.sideMenu = new Smenu(3, 150, 30, this);
 	this.addCog = function(config) {
 		var cog = new Cog(config);
 		cogs.push(cog);

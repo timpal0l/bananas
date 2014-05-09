@@ -10,6 +10,11 @@ function Smenu(height, width, bendAngle, parent) {
 	// Moving direction
 	this.dir = 0;
 
+	var me = this;
+	var mx;
+	var my;
+
+
 	// Load images
 	var cogimg = document.createElement('img');
 	cogimg.src = "../../lib/cogs.jpg";
@@ -47,6 +52,31 @@ function Smenu(height, width, bendAngle, parent) {
 	};
 
 	this.myClick = function(e) {
-		this.parent.getMouse(e);
+
+		me.getMouse(e);
+		var cogB = me.cogButton;
+
+		if (mx > cogB.x 
+		    && mx < cogB.w + cogB.x
+			&& my > cogB.y
+			&& my < cogB.h + cogB.y) {
+
+			parent.addRect(300, 300, 40, 40, '#77DD44');
+		}
+		
+		
+		
+	};
+
+	this.getMouse = function(e) {
+		var element = canvas, offsetX = 0, offsetY = 0;
+		if (element.offsetParent) {
+			do {
+				offsetX += element.offsetLeft;
+				offsetY += element.offsetTop;
+			} while ((element = element.offsetParent));
+		}
+		mx = e.pageX - offsetX;
+		my = e.pageY - offsetY;
 	};
 }
