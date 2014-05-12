@@ -13,8 +13,10 @@ function Smenu(height, width, bendAngle, parent) {
 	var me = this;
 	var mx;
 	var my;
-	var color= 'black';
+	var color= 'yellow';
 	var count = 0;
+
+	
 
 	// Load images
 	var cogimg = document.createElement('img');
@@ -32,12 +34,12 @@ function Smenu(height, width, bendAngle, parent) {
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
 	this.zoomButton = new Button(zoomimg, 30, 220, 80, 80);
 	this.catButton = new Button(catimg, 30, 320, 80, 80);
-	this.lButton = new Button(pilLeft, 70, 20, 30,30);
-	this.rButton = new Button(pilRight,150,20,30,30);
+	this.lButton = new Button(pilLeft, 20, 20, 30,30);
+	this.rButton = new Button(pilRight,80,20,30,30);
 	
 
 	// Moving speed
-	this.linearSpeed = 5;
+	this.linearSpeed = 110;
 	this.startx = 0;
 	this.starty = 70;
 
@@ -62,9 +64,9 @@ function Smenu(height, width, bendAngle, parent) {
 
 		// Move
 		this.wi += this.linearSpeed * this.dir;
-		this.cogButton.x += 5 * this.dir;
-		this.zoomButton.x += 5 * this.dir;
-		this.catButton.x += 5 * this.dir;
+		this.cogButton.x += 110 * this.dir;
+		this.zoomButton.x += 110 * this.dir;
+		this.catButton.x += 110 * this.dir;
 		this.stop();
 	};
 
@@ -75,6 +77,7 @@ function Smenu(height, width, bendAngle, parent) {
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
 		var cat = me.catButton;
+		
 
 		if (mx > cogB.x 
 		    && mx < cogB.w + cogB.x
@@ -112,7 +115,9 @@ function Smenu(height, width, bendAngle, parent) {
 		else if (count == 2){color = 'blue'; count = count +1;}
 		else if (count == 3){ color = 'brown'; count = count +1;}
 		else if(count == 4){ color = 'black'; count = 0;}
-	}
+				
+		
+		}
 		
 		
 	};
@@ -128,4 +133,5 @@ function Smenu(height, width, bendAngle, parent) {
 		mx = e.pageX - offsetX;
 		my = e.pageY - offsetY;
 	};
+
 }
