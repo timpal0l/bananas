@@ -13,10 +13,8 @@ function Smenu(height, width, bendAngle, parent) {
 	var me = this;
 	var mx;
 	var my;
-	var color= 'yellow';
+	var color = 'yellow';
 	var count = 0;
-
-	
 
 	// Load images
 	var cogimg = document.createElement('img');
@@ -34,9 +32,8 @@ function Smenu(height, width, bendAngle, parent) {
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
 	this.zoomButton = new Button(zoomimg, 30, 220, 80, 80);
 	this.catButton = new Button(catimg, 30, 320, 80, 80);
-	this.lButton = new Button(pilLeft, 20, 20, 30,30);
-	this.rButton = new Button(pilRight,80,20,30,30);
-	
+	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
+	this.rButton = new Button(pilRight, 80, 20, 30, 30);
 
 	// Moving speed
 	this.linearSpeed = 110;
@@ -51,8 +48,8 @@ function Smenu(height, width, bendAngle, parent) {
 		this.lButton.draw();
 		this.rButton.draw();
 	};
-	this.stop = function(){
-	this.dir = 0;
+	this.stop = function() {
+		this.dir = 0;
 	};
 
 	// Update the position of the menu
@@ -77,64 +74,62 @@ function Smenu(height, width, bendAngle, parent) {
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
 		var cat = me.catButton;
-		
 
-		if (mx > cogB.x 
-		    && mx < cogB.w + cogB.x
-			&& my > cogB.y
-			&& my < cogB.h + cogB.y) {
+		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
+				&& my < cogB.h + cogB.y) {
 
-            var cog = new Cog({
-                x : 222 + 300,
-                y : 190 + 100,
-                outerRadius : 50,
-                innerRadius : 15,
-                midRadius : 40,
-                holeRadius : 10,
-                numTeeth : 12,
-                theta : 0.14,
-                thetaSpeed : 400,
-                lightColor : '#FF9E9D',
-                darkColor : '#AD0825',
-                clockwise : true
-            });
+			var cog = new Cog({
+				x : 222 + 300,
+				y : 190 + 100,
+				outerRadius : 50,
+				innerRadius : 15,
+				midRadius : 40,
+				holeRadius : 10,
+				numTeeth : 12,
+				theta : 0.14,
+				thetaSpeed : 400,
+				lightColor : '#FF9E9D',
+				darkColor : '#AD0825',
+				clockwise : true
+			});
 
-            parent.addCog(cog);
+			parent.addCog(cog);
 		}
-	
-		if(mx > rarrow.x 
-		    && mx < rarrow.w + rarrow.x
-			&& my > rarrow.y
-			&& my < rarrow.h + rarrow.y){
+
+		if (mx > rarrow.x && mx < rarrow.w + rarrow.x && my > rarrow.y
+				&& my < rarrow.h + rarrow.y) {
 			me.dir = 1;
 			me.update();
 		}
-		
-		if(mx > larrow.x 
-		    && mx < larrow.w + larrow.x
-			&& my > larrow.y
-			&& my < larrow.h + larrow.y){
+
+		if (mx > larrow.x && mx < larrow.w + larrow.x && my > larrow.y
+				&& my < larrow.h + larrow.y) {
 			me.dir = -1;
 			me.update();
 		}
-		if(mx > cat.x 
-		    && mx < cat.w + cat.x
-			&& my > cat.y
-			&& my < cat.h + cat.y){
-			if(count == 0){
-				count = count +1;
-				color = 'red';			
+		if (mx > cat.x && mx < cat.w + cat.x && my > cat.y
+				&& my < cat.h + cat.y) {
+			if (count == 0) {
+				count = count + 1;
+				color = 'red';
 			}
 
-		else if (count == 1){ color = 'green'; count = count +1;}
-		else if (count == 2){color = 'blue'; count = count +1;}
-		else if (count == 3){ color = 'brown'; count = count +1;}
-		else if(count == 4){ color = 'black'; count = 0;}
-				
-		
+			else if (count == 1) {
+				color = 'green';
+				count = count + 1;
+			} else if (count == 2) {
+				color = 'blue';
+				count = count + 1;
+			} else if (count == 3) {
+				color = 'brown';
+				count = count + 1;
+			} else if (count == 4) {
+				color = 'black';
+				count = 0;
+			}
+
 		}
-		
-		
+
 	};
 
 	this.getMouse = function(e) {
@@ -148,5 +143,4 @@ function Smenu(height, width, bendAngle, parent) {
 		mx = e.pageX - offsetX;
 		my = e.pageY - offsetY;
 	};
-
 }

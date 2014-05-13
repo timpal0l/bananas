@@ -11,7 +11,9 @@ cogs = [];
 world = null;
 
 window.onload = function() {
+	Logger("[Window.Onload]: Setting canvas...");
 	setCanvas();
+	Logger("[Window.Onload]: Canvas setup complete.");
 };
 
 // Request frame from browser
@@ -86,7 +88,7 @@ function setCanvas() {
 function animate(cogs) {
 
 	// update
-    world.update();
+	world.update();
 
 	if (mousePressed == true) {
 		world.hitBox(mouse);
@@ -96,10 +98,7 @@ function animate(cogs) {
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
 
-
-
 	world.draw();
-
 
 	// request new frame
 	requestAnimFrame(function() {

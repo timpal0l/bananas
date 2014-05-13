@@ -30,12 +30,12 @@ function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }
 
-function drawCogShape(context,cog,numPoints,grd) {
+function drawCogShape(context, cog, numPoints, grd) {
 	// draw cog teeth
 	context.beginPath();
 	context.lineJoin = 'bevel';
 
-	for ( var n = 0; n < numPoints; n++) {
+	for (var n = 0; n < numPoints; n++) {
 
 		var radius = null;
 
@@ -67,7 +67,6 @@ function drawCogShape(context,cog,numPoints,grd) {
 	context.beginPath();
 	context.arc(cog.x, cog.y, cog.midRadius, 0, 2 * Math.PI, false);
 
-
 	context.fillStyle = grd;
 	context.fill();
 	context.lineWidth = 5;
@@ -82,8 +81,7 @@ function drawCogShape(context,cog,numPoints,grd) {
 	context.strokeStyle = cog.darkColor;
 	context.stroke();
 	context.restore();
-	
-	
+
 }
 function drawShape(context, shape, fill) {
 	context.fillStyle = fill;

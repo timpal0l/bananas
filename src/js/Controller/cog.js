@@ -41,13 +41,12 @@ Cog.prototype.draw = function(ctx) {
 	context.save();
 	var numPoints = this.numTeeth * 2;
 
+	// cog body gradient
+	var grd = context.createLinearGradient(this.x - 100, this.y - 100,
+			this.x + 100, this.y + 100);
+	grd.addColorStop(0, this.lightColor);
+	grd.addColorStop(1, this.darkColor);
 
-    // cog body gradient
-    var grd = context.createLinearGradient(this.x - 100, this.y - 100,
-            this.x + 100, this.y + 100);
-    grd.addColorStop(0, this.lightColor);
-    grd.addColorStop(1, this.darkColor);
-	
-	drawCogShape(context,this,numPoints,grd);
-	
+	drawCogShape(context, this, numPoints, grd);
+
 };
