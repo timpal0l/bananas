@@ -30,7 +30,61 @@ function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }
 
+function drawCogShape(context,cog,numPoints,grd) {
+	// draw cog teeth
+	context.beginPath();
+	context.lineJoin = 'bevel';
 
+	for ( var n = 0; n < numPoints; n++) {
+
+		var radius = null;
+
+		if (n % 2 == 0) {
+			radius = cog.outerRadius;
+		} else {
+			radius = cog.innerRadius;
+		}
+
+		var theta = cog.theta;
+		theta += ((Math.PI * 2) / numPoints) * (n + 1);
+
+		var x = (radius * Math.sin(theta)) + cog.x;
+		var y = (radius * Math.cos(theta)) + cog.y;
+
+		if (n == 0) {
+			context.moveTo(x, y);
+		} else {
+			context.lineTo(x, y);
+		}
+	}
+
+	context.closePath();
+	context.lineWidth = 5;
+	context.strokeStyle = cog.darkColor;
+	context.stroke();
+
+	// draw cog body
+	context.beginPath();
+	context.arc(cog.x, cog.y, cog.midRadius, 0, 2 * Math.PI, false);
+
+
+	context.fillStyle = grd;
+	context.fill();
+	context.lineWidth = 5;
+	context.strokeStyle = cog.darkColor;
+	context.stroke();
+
+	// draw cog hole
+	context.beginPath();
+	context.arc(cog.x, cog.y, cog.holeRadius, 0, 2 * Math.PI, false);
+	context.fillStyle = 'white';
+	context.fill();
+	context.strokeStyle = cog.darkColor;
+	context.stroke();
+	context.restore();
+	
+	
+}
 function drawShape(context, shape, fill) {
 	context.fillStyle = fill;
 

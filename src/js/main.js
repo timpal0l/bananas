@@ -36,8 +36,6 @@ function setCanvas() {
 	glasspanecanvas.width = WIDTH;
 
 	world = new World();
-	world.addRect(200, 200, 40, 40, '#FFC02B');
-	world.addRect(300, 300, 40, 40, '#FFC02B');
 
 	// @TODO get cog from the model.
 	// and the user should ofcourse send the data to the model :)
@@ -81,18 +79,14 @@ function setCanvas() {
 	canvas.onclick = world.sideMenu.myClick;
 
 	var time = (new Date()).getTime();
-	animate(cogs, time);
+	animate(cogs);
 }
 
 // This is the animation loop, put all objects here!!
-function animate(cogs, lastTime) {
+function animate(cogs) {
 
 	// update
-	// bottomMenu.update();
-	// sideMenu.update();
-
-	var time = (new Date()).getTime();
-	var timeDiff = time - lastTime;
+    world.update();
 
 	if (mousePressed == true) {
 		world.hitBox(mouse);
@@ -102,27 +96,14 @@ function animate(cogs, lastTime) {
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
 
+
+
 	world.draw();
-	//world.sideMenu.update();
 
-	for ( var i = 0; i < cogs.length; i++) {
-		var cog = cogs[i];
-
-		if (cogs[i].clockwise) {
-			cogs[i].theta -= (cog.thetaSpeed * timeDiff);
-		} else {
-			cogs[i].theta += (cog.thetaSpeed * timeDiff);
-		}
-	}
-
-	// draw
-	for ( var i = 0; i < cogs.length; i++) {
-		cogs[i].draw();
-	}
 
 	// request new frame
 	requestAnimFrame(function() {
-		animate(cogs, time);
+		animate(cogs);
 
 	});
 }
