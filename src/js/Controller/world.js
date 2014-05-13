@@ -19,6 +19,7 @@ function World() {
 		return my;
 	};
 
+
 	this.sideMenu = new Smenu(3, 150, 30, this);
 
 	this.addCog = function(config) {

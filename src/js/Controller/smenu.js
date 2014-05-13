@@ -84,7 +84,22 @@ function Smenu(height, width, bendAngle, parent) {
 			&& my > cogB.y
 			&& my < cogB.h + cogB.y) {
 
-			parent.addRect(300, 300, 40, 40, color);
+            var cog = new Cog({
+                x : 222 + 300,
+                y : 190 + 100,
+                outerRadius : 50,
+                innerRadius : 15,
+                midRadius : 40,
+                holeRadius : 10,
+                numTeeth : 12,
+                theta : 0.14,
+                thetaSpeed : 400,
+                lightColor : '#FF9E9D',
+                darkColor : '#AD0825',
+                clockwise : true
+            });
+
+            parent.addCog(cog);
 		}
 	
 		if(mx > rarrow.x 
