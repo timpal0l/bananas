@@ -98,6 +98,8 @@ function Smenu(height, width, bendAngle, parent) {
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
 		var brush = me.brushButton;
+		var redo = me.redoButton;
+		var undo = me.undoButton;
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
@@ -139,11 +141,20 @@ function Smenu(height, width, bendAngle, parent) {
 				color1 = '#AD0825';			
 			}
 
-		else if (count == 1){ color = '33FF33';color1 = '339900'; count = count +1;}
-		else if (count == 2){color = '#AAAAAA'; color1 = '#3959CC';count = count +1;}
-		else if (count == 3){ color = '990066'; color1 = '660033'; count = count +1;}
-		else if(count == 4){ color = 'FF9933'; color1 = 'FF6600';count = 0;}
+			else if (count == 1){ color = '33FF33';color1 = '339900'; count = count +1;}
+			else if (count == 2){color = '#AAAAAA'; color1 = '#3959CC';count = count +1;}
+			else if (count == 3){ color = '990066'; color1 = '660033'; count = count +1;}
+			else if(count == 4){ color = 'FF9933'; color1 = 'FF6600';count = 0;}
 			
+		}
+		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
+				&& my < redo.h + redo.y) {
+			// återställ det senaste bort tagna kugghjulet från tempvariabeln 
+		}
+	
+		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
+				&& my < undo.h + undo.y) {
+			// Ta bort det senaste tillagda kugghjulet o spara i en temp variabel
 		}
 
 	};
