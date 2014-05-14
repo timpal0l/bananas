@@ -16,6 +16,8 @@ function Smenu(height, width, bendAngle, parent) {
 	var color= '#FF9E9D';
 	var color1 = '#AD0825';
 	var count = 0;
+	var moveR = 1;
+	var moveL = 0;
 
 	// Load images
 	var cogimg = document.createElement('img');
@@ -60,16 +62,33 @@ function Smenu(height, width, bendAngle, parent) {
 	// Update the position of the menu
 	this.update = function() {
 
-		if (this.dir > 0) {
-			this.dir = (this.wi > WIDTH) ? 0 : 1;
+		if (moveR == 0 && this.dir == 1){
+		// Move menu to the right
+			this.wi += this.linearSpeed * this.dir;
+			this.cogButton.x += 110 * this.dir;
+			this.undoButton.x += 110 * this.dir;
+			this.brushButton.x += 110 * this.dir;
+			this.redoButton.x += 110 * this.dir;
+			moveL = 0;
+			moveR = 1;
+			this.stop();
 		}
-
-		// Move
-		this.wi += this.linearSpeed * this.dir;
-		this.cogButton.x += 110 * this.dir;
-		this.undoButton.x += 110 * this.dir;
-		this.brushButton.x += 110 * this.dir;
-		this.stop();
+		//menu has been moved to the right, dont move
+		else if(moveR > 0 && this.dir == 1){this.stop();}
+		else if(moveL == 0 && this.dir == -1){
+		//Move menu to the left
+			this.wi += this.linearSpeed * this.dir;
+			this.cogButton.x += 110 * this.dir;
+			this.undoButton.x += 110 * this.dir;
+			this.brushButton.x += 110 * this.dir;
+			this.redoButton.x += 110 * this.dir;
+			moveR = 0;
+			moveL = 1;
+			this.stop();			
+		}
+		//menu has been moved to the left, dont move
+		else if(moveL > 0 && this.dir == -1){this.stop();}
+	
 	};
 
 	this.myClick = function(e) {
