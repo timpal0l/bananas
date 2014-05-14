@@ -20,10 +20,12 @@ function Smenu(height, width, bendAngle, parent) {
 	// Load images
 	var cogimg = document.createElement('img');
 	cogimg.src = "../../lib/cogs.jpg";
-	var zoomimg = document.createElement('img');
-	zoomimg.src = "../../lib/zoom.jpg";
-	var catimg = document.createElement('img');
-	catimg.src = "../../lib/cat.jpg";
+	var undoimg = document.createElement('img');
+	undoimg.src = "../../lib/undo.svg";
+	var redoimg = document.createElement('img');
+	redoimg.src = "../../lib/redo.svg";
+	var brushimg = document.createElement('img');
+	brushimg.src = "../../lib/brush.png";
 	var pilLeft = document.createElement('img');
 	pilLeft.src = "../../lib/Back24.gif";
 	var pilRight = document.createElement('img');
@@ -31,8 +33,9 @@ function Smenu(height, width, bendAngle, parent) {
 
 	// Create buttons
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
-	this.zoomButton = new Button(zoomimg, 30, 220, 80, 80);
-	this.catButton = new Button(catimg, 30, 320, 80, 80);
+	this.undoButton = new Button(undoimg, 30, 250, 30, 30);
+	this.redoButton = new Button(redoimg, 80, 250, 30, 30);
+	this.brushButton = new Button(brushimg, 30, 320, 80, 80);
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
 
@@ -44,8 +47,9 @@ function Smenu(height, width, bendAngle, parent) {
 	this.draw = function() {
 		drawSideMenu(this);
 		this.cogButton.draw();
-		this.zoomButton.draw();
-		this.catButton.draw();
+		this.undoButton.draw();
+		this.redoButton.draw();
+		this.brushButton.draw();
 		this.lButton.draw();
 		this.rButton.draw();
 	};
@@ -63,8 +67,8 @@ function Smenu(height, width, bendAngle, parent) {
 		// Move
 		this.wi += this.linearSpeed * this.dir;
 		this.cogButton.x += 110 * this.dir;
-		this.zoomButton.x += 110 * this.dir;
-		this.catButton.x += 110 * this.dir;
+		this.undoButton.x += 110 * this.dir;
+		this.brushButton.x += 110 * this.dir;
 		this.stop();
 	};
 
@@ -74,7 +78,7 @@ function Smenu(height, width, bendAngle, parent) {
 		var cogB = me.cogButton;
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
-		var cat = me.catButton;
+		var brush = me.brushButton;
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
@@ -108,8 +112,8 @@ function Smenu(height, width, bendAngle, parent) {
 			me.dir = -1;
 			me.update();
 		}
-		if (mx > cat.x && mx < cat.w + cat.x && my > cat.y
-				&& my < cat.h + cat.y) {
+		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
+				&& my < brush.h + brush.y) {
 			if(count == 0){
 				count = count +1;
 				color = '#FF9E9D';
