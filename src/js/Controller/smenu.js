@@ -13,7 +13,8 @@ function Smenu(height, width, bendAngle, parent) {
 	var me = this;
 	var mx;
 	var my;
-	var color = 'yellow';
+	var color= '#FF9E9D';
+	var color1 = '#AD0825';
 	var count = 0;
 
 	// Load images
@@ -88,8 +89,8 @@ function Smenu(height, width, bendAngle, parent) {
 				numTeeth : 12,
 				theta : 0.14,
 				thetaSpeed : 400,
-				lightColor : '#FF9E9D',
-				darkColor : '#AD0825',
+				lightColor : color,
+				darkColor : color1,
 				clockwise : true
 			});
 
@@ -109,25 +110,17 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > cat.x && mx < cat.w + cat.x && my > cat.y
 				&& my < cat.h + cat.y) {
-			if (count == 0) {
-				count = count + 1;
-				color = 'red';
+			if(count == 0){
+				count = count +1;
+				color = '#FF9E9D';
+				color1 = '#AD0825';			
 			}
 
-			else if (count == 1) {
-				color = 'green';
-				count = count + 1;
-			} else if (count == 2) {
-				color = 'blue';
-				count = count + 1;
-			} else if (count == 3) {
-				color = 'brown';
-				count = count + 1;
-			} else if (count == 4) {
-				color = 'black';
-				count = 0;
-			}
-
+		else if (count == 1){ color = '33FF33';color1 = '339900'; count = count +1;}
+		else if (count == 2){color = '#AAAAAA'; color1 = '#3959CC';count = count +1;}
+		else if (count == 3){ color = '990066'; color1 = '660033'; count = count +1;}
+		else if(count == 4){ color = 'FF9933'; color1 = 'FF6600';count = 0;}
+			
 		}
 
 	};
