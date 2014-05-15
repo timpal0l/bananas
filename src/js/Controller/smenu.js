@@ -166,10 +166,14 @@ function Smenu(height, width, bendAngle, parent) {
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
 			// återställ det senaste bort tagna kugghjulet från tempvariabeln
+			var tempCog = redoCogs.pop();
+			cogs.push(tempCog);
 		}
 
 		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
+			var tempCog = cogs.pop();
+			redoCogs.push(tempCog);
 			// Ta bort det senaste tillagda kugghjulet o spara i en temp
 			// variabel
 		}

@@ -31,8 +31,8 @@ function World() {
 
 	this.draw = function() {
 		this.sideMenu.draw();
-		var l = boxes.length;
-		for (var i = 0; i < cogs.length; i++) {
+		var l = cogs.length;
+		for (var i = 0; i < l; i++) {
 			cogs[i].draw(context);
 		}
 	};

@@ -24,6 +24,9 @@
 // cogs.push(blueCog);
 // }
 
+cogs = [];
+redoCogs = [];
+
 var cog1 = new Cog({
 	x : 420,
 	y : 205,

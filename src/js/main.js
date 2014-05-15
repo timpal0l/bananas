@@ -6,8 +6,6 @@ canvas = null;
 context = null;
 glasspanecanvas = null;
 gpctx = null;
-boxes = [];
-cogs = [];
 world = null;
 
 window.onload = function() {
