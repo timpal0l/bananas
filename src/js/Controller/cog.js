@@ -1,19 +1,5 @@
 /* A cog class */
 
-//var time = (new Date()).getTime();
-function Box(x, y, w, h, fill) {
-	this.x = x;
-	this.y = y;
-	this.w = w;
-	// default width and height?
-	this.h = h;
-	this.fill = fill;
-
-	this.drawBox = function() {
-		drawShape(context, this, this.fill);
-	};
-}
-
 function Cog(config) {
 	this.x = config.x;
 	this.y = config.y;
@@ -30,11 +16,10 @@ function Cog(config) {
 }
 
 /*
- * cog draw method
+ * Data about the CogWheel is sent to our drawCogShape function that is located
+ * in our view-class.
  */
 
-// @TODO
-// Put this code in our drawShape function? a.k.a expanding it!
 Cog.prototype.draw = function(ctx) {
 	var context = ctx;
 
@@ -46,7 +31,5 @@ Cog.prototype.draw = function(ctx) {
 			this.x + 100, this.y + 100);
 	grd.addColorStop(0, this.lightColor);
 	grd.addColorStop(1, this.darkColor);
-
 	drawCogShape(context, this, numPoints, grd);
-
 };

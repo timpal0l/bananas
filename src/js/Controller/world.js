@@ -29,20 +29,9 @@ function World() {
 		Logger("[World.addCog]: end.");
 	};
 
-	this.addRect = function(x, y, w, h, fill) {
-		Logger("[World.addRect]: addRect called. Object:");
-		var rect = new Box(x, y, w, h, fill);
-		boxes.push(rect);
-		Logger(rect);
-		Logger("[World.addRect]: end.");
-	};
-
 	this.draw = function() {
 		this.sideMenu.draw();
 		var l = boxes.length;
-		for (var i = 0; i < l; i++) {
-			boxes[i].drawBox();
-		}
 		for (var i = 0; i < cogs.length; i++) {
 			cogs[i].draw(context);
 		}
@@ -61,7 +50,7 @@ function World() {
 			}
 		}
 		this.lastTime = time;
-	}
+	};
 
 	this.myMove = function(e) {
 		if (isDrag) {
@@ -73,6 +62,7 @@ function World() {
 
 	// @TODO
 	// fix hitbox for cog.
+	// Use getImageData to check hitbox with new cog?
 	this.hitBox = function(e) {
 		this.getMouse(e);
 		var l = cogs.length;
@@ -83,16 +73,23 @@ function World() {
 
 			// get image data at the mouse x,y pixel
 			var imageData = gpctx.getImageData(mx, my, 1, 1);
-			var index = (mx + my * imageData.width) * 4;
 
 			// if the mouse pixel exists, select and break
-			if (imageData.data[3] > 0) {
+			if (imageData.data[3] > 254) {
 				mySel = cogs[i];
 				offsetx = mx - mySel.x;
 				offsety = my - mySel.y;
 				mySel.x = mx - offsetx;
 				mySel.y = my - offsety;
 				isDrag = true;
+
+				Logger("[World.hitBox]: xCenter: " + mySel.x);
+				Logger("[World.hitBox]: yCenter: " + mySel.y);
+
+				Logger("[World.hitBox]: xCog: " + offsetx);
+				Logger("[World.hitBox]: yCog: " + offsety);
+
+				Logger(imageData.data[3])
 				canvas.onmousemove = this.myMove;
 				mousePressed = false;
 				return;

@@ -13,7 +13,7 @@ function Smenu(height, width, bendAngle, parent) {
 	var me = this;
 	var mx;
 	var my;
-	var color= '#FF9E9D';
+	var color = '#FF9E9D';
 	var color1 = '#AD0825';
 	var count = 0;
 	var moveR = 1;
@@ -62,8 +62,8 @@ function Smenu(height, width, bendAngle, parent) {
 	// Update the position of the menu
 	this.update = function() {
 
-		if (moveR == 0 && this.dir == 1){
-		// Move menu to the right
+		if (moveR == 0 && this.dir == 1) {
+			// Move menu to the right
 			this.wi += this.linearSpeed * this.dir;
 			this.cogButton.x += 110 * this.dir;
 			this.undoButton.x += 110 * this.dir;
@@ -73,10 +73,11 @@ function Smenu(height, width, bendAngle, parent) {
 			moveR = 1;
 			this.stop();
 		}
-		//menu has been moved to the right, dont move
-		else if(moveR > 0 && this.dir == 1){this.stop();}
-		else if(moveL == 0 && this.dir == -1){
-		//Move menu to the left
+		// menu has been moved to the right, dont move
+		else if (moveR > 0 && this.dir == 1) {
+			this.stop();
+		} else if (moveL == 0 && this.dir == -1) {
+			// Move menu to the left
 			this.wi += this.linearSpeed * this.dir;
 			this.cogButton.x += 110 * this.dir;
 			this.undoButton.x += 110 * this.dir;
@@ -84,11 +85,13 @@ function Smenu(height, width, bendAngle, parent) {
 			this.redoButton.x += 110 * this.dir;
 			moveR = 0;
 			moveL = 1;
-			this.stop();			
+			this.stop();
 		}
-		//menu has been moved to the left, dont move
-		else if(moveL > 0 && this.dir == -1){this.stop();}
-	
+		// menu has been moved to the left, dont move
+		else if (moveL > 0 && this.dir == -1) {
+			this.stop();
+		}
+
 	};
 
 	this.myClick = function(e) {
@@ -135,26 +138,40 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
-			if(count == 0){
-				count = count +1;
+			if (count == 0) {
+				count = count + 1;
 				color = '#FF9E9D';
-				color1 = '#AD0825';			
+				color1 = '#AD0825';
 			}
 
-			else if (count == 1){ color = '33FF33';color1 = '339900'; count = count +1;}
-			else if (count == 2){color = '#AAAAAA'; color1 = '#3959CC';count = count +1;}
-			else if (count == 3){ color = '990066'; color1 = '660033'; count = count +1;}
-			else if(count == 4){ color = 'FF9933'; color1 = 'FF6600';count = 0;}
-			
+			else if (count == 1) {
+				color = '33FF33';
+				color1 = '339900';
+				count = count + 1;
+			} else if (count == 2) {
+				color = '#AAAAAA';
+				color1 = '#3959CC';
+				count = count + 1;
+			} else if (count == 3) {
+				color = '990066';
+				color1 = '660033';
+				count = count + 1;
+			} else if (count == 4) {
+				color = 'FF9933';
+				color1 = 'FF6600';
+				count = 0;
+			}
+
 		}
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
-			// återställ det senaste bort tagna kugghjulet från tempvariabeln 
+			// återställ det senaste bort tagna kugghjulet från tempvariabeln
 		}
-	
+
 		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
-			// Ta bort det senaste tillagda kugghjulet o spara i en temp variabel
+			// Ta bort det senaste tillagda kugghjulet o spara i en temp
+			// variabel
 		}
 
 	};

@@ -83,17 +83,17 @@ function drawCogShape(context, cog, numPoints, grd) {
 	context.restore();
 
 }
-function drawShape(context, shape, fill) {
-	context.fillStyle = fill;
-
-	// @TODO
-	// Expand this to draw the cogs aswell?
-	// Making it a general drawer
-
-	// We can skip the drawing of elements that have moved off the screen:
-	if (shape.x > WIDTH || shape.y > HEIGHT)
-		return;
-	if (shape.x + shape.w < 0 || shape.y + shape.h < 0)
-		return;
-	context.fillRect(shape.x, shape.y, shape.w, shape.h);
-}
+// function drawShape(context, shape, fill) {
+// context.fillStyle = fill;
+//
+// // @TODO
+// // Expand this to draw the cogs aswell?
+// // Making it a general drawer
+//
+// // We can skip the drawing of elements that have moved off the screen:
+// if (shape.x > WIDTH || shape.y > HEIGHT)
+// return;
+// if (shape.x + shape.w < 0 || shape.y + shape.h < 0)
+// return;
+// context.fillRect(shape.x, shape.y, shape.w, shape.h);
+// }
