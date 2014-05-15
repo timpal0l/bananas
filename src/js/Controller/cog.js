@@ -13,6 +13,8 @@ function Cog(config) {
 	this.lightColor = config.lightColor;
 	this.darkColor = config.darkColor;
 	this.clockwise = config.clockwise;
+	this.originalLight = config.lightColor;
+	this.originalDark = config.darkColor;
 }
 
 /*
@@ -32,4 +34,25 @@ Cog.prototype.draw = function(ctx) {
 	grd.addColorStop(0, this.lightColor);
 	grd.addColorStop(1, this.darkColor);
 	drawCogShape(context, this, numPoints, grd);
+};
+
+Cog.prototype.checkHit = function(ctx) {
+	var l = cogs.length;
+	for (var i = l-1; i >= 0; i--) {
+		if (this !== cogs[i]) {
+			var dx = Math.abs(this.x - cogs[i].x);
+			var dy = Math.abs(this.y - cogs[i].y);
+			var dist = Math.sqrt(dx * dx + dy * dy) - this.outerRadius - cogs[i].midRadius;
+			if (dist < 5) { // since linewidth = 5
+				this.lightColor = "#C0C0C0";
+				this.darkColor = "#808080";
+			} else{
+				this.lightColor = this.originalLight;
+				this.darkColor = this.originalDark;
+			};
+
+		} else {
+
+		};
+	};
 };
