@@ -44,11 +44,12 @@ Cog.prototype.checkHit = function(ctx) {
 			var dy = Math.abs(this.y - cogs[i].y);
 			var dist = Math.sqrt(dx * dx + dy * dy) - this.outerRadius - cogs[i].midRadius;
 			if (dist < 5) { // since linewidth = 5
-				this.lightColor = "#C0C0C0";
-				this.darkColor = "#808080";
+				cogs[i].lightColor = "#C0C0C0";
+				cogs[i].darkColor = "#808080";
+				//alert("krock");
 			} else{
-				this.lightColor = this.originalLight;
-				this.darkColor = this.originalDark;
+				cogs[i].lightColor = cogs[i].originalLight;
+				cogs[i].darkColor = cogs[i].originalDark;
 			};
 
 		} else {

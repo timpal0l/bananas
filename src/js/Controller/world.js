@@ -56,8 +56,6 @@ function World() {
 		if (isDrag) {
 			me.getMouse(e);
 			mySel.checkHit(context);
-			mySel.lastx = mySel.x;
-			mySel.lasty = mySel.y;
 			mySel.x = mx - offsetx;
 			mySel.y = my - offsety;
 
