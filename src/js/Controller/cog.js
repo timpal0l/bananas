@@ -44,12 +44,14 @@ Cog.prototype.checkHit = function(ctx) {
 			var dy = Math.abs(this.y - cogs[i].y);
 			var dist = Math.sqrt(dx * dx + dy * dy) - this.outerRadius - cogs[i].midRadius;
 			if (dist < 5) { // since linewidth = 5
-				cogs[i].lightColor = "#C0C0C0";
-				cogs[i].darkColor = "#808080";
+				//cogs[i].lightColor = "#C0C0C0";
+			//	cogs[i].darkColor = "#808080";
+                cogctx.globalAlpha = 0.5;
 				//alert("krock");
 			} else{
-				cogs[i].lightColor = cogs[i].originalLight;
-				cogs[i].darkColor = cogs[i].originalDark;
+				//cogs[i].lightColor = cogs[i].originalLight;
+				//cogs[i].darkColor = cogs[i].originalDark;
+                cogctx.globalAlpha = 1.0;
 			};
 
 		} else {

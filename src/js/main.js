@@ -7,6 +7,8 @@ context = null;
 glasspanecanvas = null;
 gpctx = null;
 world = null;
+cogctx = null;
+concanvas = null;
 
 window.onload = function() {
 	Logger("[Window.Onload]: Setting canvas...");
@@ -28,12 +30,16 @@ function setCanvas() {
 	canvas = document.getElementById('myCanvas');
 	context = canvas.getContext('2d');
 	glasspanecanvas = document.createElement('canvas');
-	gpctx = glasspanecanvas.getContext('2d');
+    gpctx = glasspanecanvas.getContext('2d');
+    cogcanvas = document.getElementById('myCanvas2');
+    cogctx = cogcanvas.getContext('2d');
 
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
 	glasspanecanvas.height = HEIGHT;
 	glasspanecanvas.width = WIDTH;
+    cogcanvas.height = HEIGHT;
+    cogcanvas.width = WIDTH;
 
 	world = new World();
 
@@ -48,11 +54,11 @@ function setCanvas() {
 	canvas.onclick = world.sideMenu.myClick;
 
 	// var time = (new Date()).getTime();
-	animate(cogs);
+	animate();
 }
 
 // This is the animation loop, put all objects here!!
-function animate(cogs) {
+function animate() {
 
 	// update
 	world.update();
@@ -64,11 +70,12 @@ function animate(cogs) {
 	// clear
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
+    cogctx.clearRect(0, 0, WIDTH, HEIGHT);
 
 	world.draw();
 
 	// request new frame
 	requestAnimFrame(function() {
-		animate(cogs);
+		animate();
 	});
 }

@@ -33,8 +33,17 @@ function World() {
 		this.sideMenu.draw();
 		var l = cogs.length;
 		for (var i = 0; i < l; i++) {
-			cogs[i].draw(context);
+            if(mySel === cogs[i]){
+
+            }else {
+                cogs[i].draw(context);
+            };
+
 		}
+        if (mySel != null){
+            mySel.draw(cogctx);
+        }
+        context.drawImage(cogcanvas,0,0);
 	};
 
 	this.update = function() {
