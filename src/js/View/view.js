@@ -26,6 +26,16 @@ function drawSideMenu(menu) {
 	context.stroke();
 }
 
+function drawCmenu(menu){
+	context.moveTo(menu.startx, menu.starty);
+	context.arcTo(menu.w, menu.starty, menu.w, (menu.w + menu.bendA),
+			menu.bendA);
+	context.arcTo(menu.w, menu.h, (menu.w - menu.bendA), menu.h,
+			menu.bendA);
+	context.arcTo(menu.startx, menu.h, menu.startx, menu.h, 0);
+	context.stroke();
+}
+
 function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }

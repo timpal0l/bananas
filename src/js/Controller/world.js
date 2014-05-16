@@ -20,7 +20,7 @@ function World() {
 	};
 
 	this.sideMenu = new Smenu(3, 150, 30, this);
-
+	
 	this.addCog = function(config) {
 		Logger("[World.addCog]: addCog called. Object:");
 		var cog = new Cog(config);
@@ -28,7 +28,7 @@ function World() {
 		Logger(cog);
 		Logger("[World.addCog]: end.");
 	};
-
+	
 	this.draw = function() {
 		this.sideMenu.draw();
 		var l = cogs.length;

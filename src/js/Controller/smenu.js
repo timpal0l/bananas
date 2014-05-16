@@ -32,6 +32,7 @@ function Smenu(height, width, bendAngle, parent) {
 	pilLeft.src = "../../lib/Back24.gif";
 	var pilRight = document.createElement('img');
 	pilRight.src = "../../lib/Forward24.gif";
+	//var colorm = new Colormenu(2,50,6);
 
 	// Create buttons
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
@@ -40,12 +41,12 @@ function Smenu(height, width, bendAngle, parent) {
 	this.brushButton = new Button(brushimg, 30, 320, 80, 80);
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
-
+	//this.cMenu = new Colormenu(2,50,5);
 	// Moving speed
 	this.linearSpeed = 110;
 	this.startx = 0;
 	this.starty = 70;
-
+	
 	this.draw = function() {
 		drawSideMenu(this);
 		this.cogButton.draw();
@@ -54,6 +55,7 @@ function Smenu(height, width, bendAngle, parent) {
 		this.brushButton.draw();
 		this.lButton.draw();
 		this.rButton.draw();
+		//this.colorm.draw();
 	};
 	this.stop = function() {
 		this.dir = 0;
@@ -138,7 +140,7 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
-			if (count == 0) {
+			/*if (count == 0) {
 				count = count + 1;
 				color = '#FF9E9D';
 				color1 = '#AD0825';
@@ -160,7 +162,8 @@ function Smenu(height, width, bendAngle, parent) {
 				color = 'FF9933';
 				color1 = 'FF6600';
 				count = 0;
-			}
+			}*/
+			colorm.draw();
 
 		}
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
