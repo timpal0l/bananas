@@ -32,7 +32,7 @@ function Smenu(height, width, bendAngle, parent) {
 	pilLeft.src = "../../lib/Back24.gif";
 	var pilRight = document.createElement('img');
 	pilRight.src = "../../lib/Forward24.gif";
-	//var colorm = new Colormenu(2,50,6);
+	// var colorm = new Colormenu(2,50,6);
 
 	// Create buttons
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
@@ -41,12 +41,12 @@ function Smenu(height, width, bendAngle, parent) {
 	this.brushButton = new Button(brushimg, 30, 320, 80, 80);
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
-	//this.cMenu = new Colormenu(2,50,5);
+	// this.cMenu = new Colormenu(2,50,5);
 	// Moving speed
 	this.linearSpeed = 110;
 	this.startx = 0;
 	this.starty = 70;
-	
+
 	this.draw = function() {
 		drawSideMenu(this);
 		this.cogButton.draw();
@@ -55,7 +55,7 @@ function Smenu(height, width, bendAngle, parent) {
 		this.brushButton.draw();
 		this.lButton.draw();
 		this.rButton.draw();
-		//this.colorm.draw();
+		// this.colorm.draw();
 	};
 	this.stop = function() {
 		this.dir = 0;
@@ -108,20 +108,20 @@ function Smenu(height, width, bendAngle, parent) {
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
-
 			var cog = new Cog({
-				x : 222 + 300,
-				y : 190 + 100,
+				x : 1200,
+				y : 100,
 				outerRadius : 50,
 				innerRadius : 15,
 				midRadius : 40,
 				holeRadius : 10,
 				numTeeth : 12,
 				theta : 0.14,
-				thetaSpeed : 400,
+				thetaSpeed : 0,
 				lightColor : color,
 				darkColor : color1,
-				clockwise : true
+				clockwise : null,
+				engine : false
 			});
 
 			parent.addCog(cog);
@@ -140,29 +140,16 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
-			/*if (count == 0) {
-				count = count + 1;
-				color = '#FF9E9D';
-				color1 = '#AD0825';
-			}
-
-			else if (count == 1) {
-				color = '33FF33';
-				color1 = '339900';
-				count = count + 1;
-			} else if (count == 2) {
-				color = '#AAAAAA';
-				color1 = '#3959CC';
-				count = count + 1;
-			} else if (count == 3) {
-				color = '990066';
-				color1 = '660033';
-				count = count + 1;
-			} else if (count == 4) {
-				color = 'FF9933';
-				color1 = 'FF6600';
-				count = 0;
-			}*/
+			/*
+			 * if (count == 0) { count = count + 1; color = '#FF9E9D'; color1 =
+			 * '#AD0825'; }
+			 * 
+			 * else if (count == 1) { color = '33FF33'; color1 = '339900'; count =
+			 * count + 1; } else if (count == 2) { color = '#AAAAAA'; color1 =
+			 * '#3959CC'; count = count + 1; } else if (count == 3) { color =
+			 * '990066'; color1 = '660033'; count = count + 1; } else if (count ==
+			 * 4) { color = 'FF9933'; color1 = 'FF6600'; count = 0; }
+			 */
 			colorm.draw();
 
 		}
@@ -180,8 +167,12 @@ function Smenu(height, width, bendAngle, parent) {
 
 		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
-			var tempCog = cogs.pop();
-			redoCogs.push(tempCog);
+			if (cogs.length == 1) {
+				return;
+			} else {
+				var tempCog = cogs.pop();
+				redoCogs.push(tempCog);
+			}
 			// Ta bort det senaste tillagda kugghjulet o spara i en temp
 			// variabel
 		}

@@ -30,24 +30,23 @@ function setCanvas() {
 	canvas = document.getElementById('myCanvas');
 	context = canvas.getContext('2d');
 	glasspanecanvas = document.createElement('canvas');
-    gpctx = glasspanecanvas.getContext('2d');
-    cogcanvas = document.getElementById('myCanvas2');
-    cogctx = cogcanvas.getContext('2d');
+	gpctx = glasspanecanvas.getContext('2d');
+	cogcanvas = document.getElementById('myCanvas2');
+	cogctx = cogcanvas.getContext('2d');
 
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
 	glasspanecanvas.height = HEIGHT;
 	glasspanecanvas.width = WIDTH;
-    cogcanvas.height = HEIGHT;
-    cogcanvas.width = WIDTH;
+	cogcanvas.height = HEIGHT;
+	cogcanvas.width = WIDTH;
 
 	world = new World();
 
 	// @TODO get cog from the model.
 	// and the user should ofcourse send the data to the model :)
 
-	world.addCog(cog1);
-	world.addCog(cog2);
+	world.addCog(cogEngine);
 
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
@@ -70,7 +69,7 @@ function animate() {
 	// clear
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
-    cogctx.clearRect(0, 0, WIDTH, HEIGHT);
+	cogctx.clearRect(0, 0, WIDTH, HEIGHT);
 
 	world.draw();
 

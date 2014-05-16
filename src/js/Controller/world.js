@@ -20,7 +20,7 @@ function World() {
 	};
 
 	this.sideMenu = new Smenu(3, 150, 30, this);
-	
+
 	this.addCog = function(config) {
 		Logger("[World.addCog]: addCog called. Object:");
 		var cog = new Cog(config);
@@ -28,22 +28,22 @@ function World() {
 		Logger(cog);
 		Logger("[World.addCog]: end.");
 	};
-	
+
 	this.draw = function() {
 		this.sideMenu.draw();
 		var l = cogs.length;
 		for (var i = 0; i < l; i++) {
-            if(mySel === cogs[i]){
+			if (mySel === cogs[i]) {
 
-            }else {
-                cogs[i].draw(context);
-            };
+			} else {
+				cogs[i].draw(context);
+			};
 
 		}
-        if (mySel != null){
-            mySel.draw(cogctx);
-        }
-        context.drawImage(cogcanvas,0,0);
+		if (mySel != null) {
+			mySel.draw(cogctx);
+		}
+		context.drawImage(cogcanvas, 0, 0);
 	};
 
 	this.update = function() {
@@ -86,7 +86,7 @@ function World() {
 			var imageData = gpctx.getImageData(mx, my, 1, 1);
 
 			// if the mouse pixel exists, select and break
-			if (imageData.data[3] > 254) {
+			if (imageData.data[3] > 0) {
 				mySel = cogs[i];
 				offsetx = mx - mySel.x;
 				offsety = my - mySel.y;
@@ -94,13 +94,12 @@ function World() {
 				mySel.y = my - offsety;
 				isDrag = true;
 
-				Logger("[World.hitBox]: xCenter: " + mySel.x);
-				Logger("[World.hitBox]: yCenter: " + mySel.y);
+				// Logger("[World.hitBox]: xCenter: " + mySel.x);
+				// Logger("[World.hitBox]: yCenter: " + mySel.y);
+				//
+				// Logger("[World.hitBox]: xCog: " + offsetx);
+				// Logger("[World.hitBox]: yCog: " + offsety);
 
-				Logger("[World.hitBox]: xCog: " + offsetx);
-				Logger("[World.hitBox]: yCog: " + offsety);
-
-				Logger(imageData.data[3])
 				canvas.onmousemove = this.myMove;
 				mousePressed = false;
 				return;

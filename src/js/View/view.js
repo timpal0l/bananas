@@ -26,12 +26,11 @@ function drawSideMenu(menu) {
 	context.stroke();
 }
 
-function drawCmenu(menu){
+function drawCmenu(menu) {
 	context.moveTo(menu.startx, menu.starty);
 	context.arcTo(menu.w, menu.starty, menu.w, (menu.w + menu.bendA),
 			menu.bendA);
-	context.arcTo(menu.w, menu.h, (menu.w - menu.bendA), menu.h,
-			menu.bendA);
+	context.arcTo(menu.w, menu.h, (menu.w - menu.bendA), menu.h, menu.bendA);
 	context.arcTo(menu.startx, menu.h, menu.startx, menu.h, 0);
 	context.stroke();
 }
@@ -91,19 +90,4 @@ function drawCogShape(context, cog, numPoints, grd) {
 	context.strokeStyle = cog.darkColor;
 	context.stroke();
 	context.restore();
-
 }
-// function drawShape(context, shape, fill) {
-// context.fillStyle = fill;
-//
-// // @TODO
-// // Expand this to draw the cogs aswell?
-// // Making it a general drawer
-//
-// // We can skip the drawing of elements that have moved off the screen:
-// if (shape.x > WIDTH || shape.y > HEIGHT)
-// return;
-// if (shape.x + shape.w < 0 || shape.y + shape.h < 0)
-// return;
-// context.fillRect(shape.x, shape.y, shape.w, shape.h);
-// }
