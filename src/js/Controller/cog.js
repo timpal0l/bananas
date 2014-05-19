@@ -41,13 +41,25 @@ Cog.prototype.checkHit = function(ctx) {
 	var l = cogs.length;
 	for (var i = l - 1; i >= 0; i--) {
 		if (this !== cogs[i]) {
-			var dx = Math.abs(this.x - cogs[i].x);
-			var dy = Math.abs(this.y - cogs[i].y);
-			var dist = Math.sqrt(dx * dx + dy * dy) - this.outerRadius
+			var dx = this.x - cogs[i].x
+			var dy = this.y - cogs[i].y
+			var absdx = Math.abs(dx);
+			var absdy = Math.abs(dy);
+			var dist = Math.sqrt(absdx * absdx + absdy * absdy) - this.outerRadius
 					- cogs[i].midRadius;
-			if (dist < 5) { // since linewidth = 5
 
+			if (dist < 1) { // since linewidth = 5
 				world.myUp();
+				theta = Math.atan2(dy, dx);
+				//theta *= 180/Math.PI; //radian to degrees
+				// r is the distance to move
+				var r = Math.abs(dist) + 2;
+
+				var deltax = r*Math.cos(theta);
+				var deltay = r*Math.sin(theta);
+				this.x += deltax;
+				this.y += deltay;
+
 				cogctx.globalAlpha = 0.5;
 
 				if (cogs[i].engine == true) {
@@ -60,6 +72,7 @@ Cog.prototype.checkHit = function(ctx) {
 
 			} else {
 				cogctx.globalAlpha = 1.0;
+				this.thetaSpeed = 0;
 			};
 		}
 	};

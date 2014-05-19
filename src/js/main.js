@@ -31,7 +31,7 @@ function setCanvas() {
 	context = canvas.getContext('2d');
 	glasspanecanvas = document.createElement('canvas');
 	gpctx = glasspanecanvas.getContext('2d');
-	cogcanvas = document.getElementById('myCanvas2');
+	cogcanvas = document.createElement('canvas');
 	cogctx = cogcanvas.getContext('2d');
 
 	canvas.height = HEIGHT;

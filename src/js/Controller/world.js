@@ -119,6 +119,7 @@ function World() {
 		isDrag = false;
 		canvas.onmousemove = null;
 		mousePressed = false;
+		mySel = null;
 	};
 
 	this.getMouse = function(e) {
