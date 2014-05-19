@@ -121,7 +121,8 @@ function Smenu(height, width, bendAngle, parent) {
 				lightColor : color,
 				darkColor : color1,
 				clockwise : null,
-				engine : false
+				engine : false,
+                connected : false
 			});
 
 			parent.addCog(cog);

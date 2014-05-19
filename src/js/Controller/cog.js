@@ -16,6 +16,7 @@ function Cog(config) {
 	this.originalLight = config.lightColor;
 	this.originalDark = config.darkColor;
 	this.engine = config.engine;
+    this.connected = config.connected;
 }
 
 /*
@@ -49,7 +50,7 @@ Cog.prototype.checkHit = function(ctx) {
 					- cogs[i].midRadius;
 
 			if (dist < 1) { // since linewidth = 5
-				world.myUp();
+
 				theta = Math.atan2(dy, dx);
 				//theta *= 180/Math.PI; //radian to degrees
 				// r is the distance to move
@@ -63,16 +64,22 @@ Cog.prototype.checkHit = function(ctx) {
 				cogctx.globalAlpha = 0.5;
 
 				if (cogs[i].engine == true) {
-					this.clockwise = true;
-					this.thetaSpeed = 0.002;
-				} else {
 					this.clockwise = (cogs[i].clockwise == true ? false : true);
 					this.thetaSpeed = 0.002;
+                    this.connected = true;
+				} else if (cogs[i].connected == true) {
+					this.clockwise = (cogs[i].clockwise == true ? false : true);
+					this.thetaSpeed = 0.002;
+                    this.connected = true;
 				}
+                world.myUp();
+                return;
 
 			} else {
 				cogctx.globalAlpha = 1.0;
-				this.thetaSpeed = 0;
+                this.thetaSpeed = 0;
+                this.connected = false;
+
 			};
 		}
 	};

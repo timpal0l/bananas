@@ -16,5 +16,6 @@ var cogEngine = new Cog({
 	lightColor : '#FFFFFF',
 	darkColor : '#111111',
 	clockwise : false,
-	engine : true
+	engine : true,
+    connected : false
 });
