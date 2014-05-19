@@ -9,6 +9,7 @@ function Smenu(height, width, bendAngle, parent) {
 
 	// Moving direction
 	this.dir = 0;
+	this.cdir = 0;
 
 	var me = this;
 	var mx;
@@ -18,6 +19,8 @@ function Smenu(height, width, bendAngle, parent) {
 	var count = 0;
 	var moveR = 1;
 	var moveL = 0;
+	var cL = 1;
+	var cR = 0;
 
 	// Load images
 	var cogimg = document.createElement('img');
@@ -32,7 +35,14 @@ function Smenu(height, width, bendAngle, parent) {
 	pilLeft.src = "../../lib/Back24.gif";
 	var pilRight = document.createElement('img');
 	pilRight.src = "../../lib/Forward24.gif";
-	// var colorm = new Colormenu(2,50,6);
+	var redimg = document.createElement('img');
+	redimg.src = "../../lib/red.png";
+	var blueimg = document.createElement('img');
+	blueimg.src= "../../lib/blue.png";
+	var greenimg = document.createElement('img');
+	greenimg.src = "../../lib/green.png";
+	var yellowimg = document.createElement('img');
+	yellowimg.src = "../../lib/yellow.png";
 
 	// Create buttons
 	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
@@ -41,7 +51,12 @@ function Smenu(height, width, bendAngle, parent) {
 	this.brushButton = new Button(brushimg, 30, 320, 80, 80);
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
-	// this.cMenu = new Colormenu(2,50,5);
+	this.redButton = new Button(redimg,-30, 470, 30, 30);
+	this.blueButton = new Button(blueimg,-30, 500, 30, 30);
+	this.greenButton = new Button(greenimg,-30, 530, 30, 30);
+	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25);
+	this.colorMenu = new Colormenu(600,0,5);
+	
 	// Moving speed
 	this.linearSpeed = 110;
 	this.startx = 0;
@@ -55,10 +70,18 @@ function Smenu(height, width, bendAngle, parent) {
 		this.brushButton.draw();
 		this.lButton.draw();
 		this.rButton.draw();
-		// this.colorm.draw();
+		this.colorMenu.draw();
+		this.redButton.draw();
+		this.blueButton.draw();
+		this.greenButton.draw();
+		this.yellowButton.draw();
+		
 	};
 	this.stop = function() {
 		this.dir = 0;
+	};
+	this.cMenustop = function(){
+		this.cdirr = 0;
 	};
 
 	// Update the position of the menu
@@ -96,6 +119,35 @@ function Smenu(height, width, bendAngle, parent) {
 
 	};
 
+	this.colorUpdate = function(){
+		if(cR == 0 && cL == 1){
+			this.cdirr=1;
+			this.colorMenu.w += 80* this.cdirr;
+			this.redButton.x += 50 * this.cdirr;
+			this.blueButton.x +=50 * this.cdirr;
+			this.greenButton.x += 50 * this.cdirr;
+			this.yellowButton.x += 50 * this.cdirr;
+			cR = 1;
+			cL = 0; 
+			this.cMenustop();
+			}		
+		else if(cL == 0 && cR == 1){
+			this.cdirr = -1;
+			this.colorMenu.w += 80 * this.cdirr;
+			this.redButton.x += 50 * this.cdirr;
+			this.blueButton.x += 50 * this.cdirr;
+			this.greenButton.x += 50 * this.cdirr;
+			this.yellowButton.x += 50 * this.cdirr;			
+
+			cR = 0;
+			cL = 1;
+			this.cMenustop();
+		}
+		else {this.cMenustop();}
+
+	};
+
+
 	this.myClick = function(e) {
 
 		me.getMouse(e);
@@ -105,6 +157,11 @@ function Smenu(height, width, bendAngle, parent) {
 		var brush = me.brushButton;
 		var redo = me.redoButton;
 		var undo = me.undoButton;
+		var red = me.redButton;
+		var blue = me.blueButton;
+		var green = me.greenButton;
+		var yell = me.yellowButton;
+
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
@@ -141,17 +198,7 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
-			/*
-			 * if (count == 0) { count = count + 1; color = '#FF9E9D'; color1 =
-			 * '#AD0825'; }
-			 * 
-			 * else if (count == 1) { color = '33FF33'; color1 = '339900'; count =
-			 * count + 1; } else if (count == 2) { color = '#AAAAAA'; color1 =
-			 * '#3959CC'; count = count + 1; } else if (count == 3) { color =
-			 * '990066'; color1 = '660033'; count = count + 1; } else if (count ==
-			 * 4) { color = 'FF9933'; color1 = 'FF6600'; count = 0; }
-			 */
-			colorm.draw();
+			me.colorUpdate();
 
 		}
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
@@ -177,6 +224,29 @@ function Smenu(height, width, bendAngle, parent) {
 			// Ta bort det senaste tillagda kugghjulet o spara i en temp
 			// variabel
 		}
+
+		if (mx > red.x && mx < red.w + red.x && my > red.y
+				&& my < red.h + red.y) {
+			color = '#FF9E9D';
+			color1 = '#AD0825';
+	}
+		if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
+				&& my < blue.h + blue.y) {
+			color = '#2f42d4';
+			color1 = '#1f2d97';	
+		}
+
+		if (mx > green.x && mx < green.w + green.x && my > green.y
+				&& my < green.h + green.y) {
+			color = '#3dd42f';
+			color1 = '#29971f';	
+		}
+		if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
+				&& my < yell.h + yell.y) {
+			color1 = '#f2bc18';
+			color = '#f2f218';	
+		}
+	
 
 	};
 

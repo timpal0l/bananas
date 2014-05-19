@@ -28,9 +28,9 @@ function drawSideMenu(menu) {
 
 function drawCmenu(menu) {
 	context.moveTo(menu.startx, menu.starty);
-	context.arcTo(200, menu.starty, 200, 400, menu.bendA);
-	context.arcTo(200,400, 200, 500, menu.bendA);
-	context.arcTo(menu.startx,400, menu.startx,400, 0);
+	context.arcTo(menu.w, menu.starty, menu.w, menu.h, menu.bendA);
+	context.arcTo(menu.w,menu.h, menu.w, menu.h, menu.bendA);
+	context.arcTo(menu.startx,menu.h, menu.startx,menu.h, 0);
 	context.stroke();
 }
 
