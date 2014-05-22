@@ -203,7 +203,7 @@ function Smenu(height, width, bendAngle, parent) {
 		}
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
-			// återställ det senaste bort tagna kugghjulet från tempvariabeln
+			// återställ det senaste borttagna kugghjulet från tempvariabeln
 			if (redoCogs.length == 0) {
 				return;
 			} else {
