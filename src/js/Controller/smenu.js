@@ -23,9 +23,24 @@ function Smenu(height, width, bendAngle, parent) {
 	var cR = 0;
 
 	// Load images
-	var cogimg = document.createElement('img');
-	cogimg.src = "../../lib/newcog.png";
-	var undoimg = document.createElement('img');
+    var cog = new Cog({
+        x : 60,
+        y : 150,
+        outerRadius : 50,
+        innerRadius : 15,
+        midRadius : 40,
+        holeRadius : 10,
+        numTeeth : 12,
+        theta : 0.14,
+        thetaSpeed : 0,
+        lightColor : color,
+        darkColor : color1,
+        clockwise : null,
+        engine : false,
+        connected : false
+    });
+    var cogimg = new Cog(cog);
+    var undoimg = document.createElement('img');
 	undoimg.src = "../../lib/undo.svg";
 	var redoimg = document.createElement('img');
 	redoimg.src = "../../lib/redo.svg";
@@ -61,21 +76,25 @@ function Smenu(height, width, bendAngle, parent) {
 	this.greenButton = new Button(greenimg,-30, 530, 30, 30);
 	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25);
 	this.colorMenu = new Colormenu(600,0,5);
+
+    buttons.push(this.cogButton,
+        this.undoButton,
+        this.redoButton,
+        this.brushButton,
+        this.lButton,
+        this.rButton,
+        this.redButton,
+        this.blueButton,
+        this.greenButton,
+        this.yellowButton
+        )
 	
 
 	this.draw = function() {
 		drawSideMenu(this);
-		this.cogButton.draw();
-		this.undoButton.draw();
-		this.redoButton.draw();
-		this.brushButton.draw();
-		this.lButton.draw();
-		this.rButton.draw();
-		this.colorMenu.draw();
-		this.redButton.draw();
-		this.blueButton.draw();
-		this.greenButton.draw();
-		this.yellowButton.draw();
+        for(var i = 0; i < buttons.length - 1; i++){
+            buttons[i].draw();
+        }
 		
 	};
 	this.stop = function() {
@@ -148,6 +167,24 @@ function Smenu(height, width, bendAngle, parent) {
 
 	};
 
+    this.myHover = function(e) {
+        for(var i = 0; i < buttons.length - 1; i++){
+            me.getMouse(e);
+            Logger(mx + " ," + my);
+            if (mx > buttons[i].x && mx < buttons[i].w + buttons[i].x && my > buttons[i].y
+                && my < buttons[i].h + buttons[i].y) {
+                if (buttons[i].enlarged == false){
+                    buttons[i].toggle();
+                    buttons[i].enlarged = true;
+                }
+            }else {
+                if (buttons[i].enlarged == true){
+                    buttons[i].toggle();
+                    buttons[i].enlarged = false;
+                }
+            }
+        }
+    }
 
 	this.myClick = function(e) {
 

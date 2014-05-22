@@ -2,6 +2,7 @@
 
 cogs = [];
 redoCogs = [];
+buttons = [];
 
 var cogEngine = new Cog({
 	x : 650,

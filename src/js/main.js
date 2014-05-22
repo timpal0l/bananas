@@ -51,6 +51,7 @@ function setCanvas() {
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
 	canvas.onclick = world.sideMenu.myClick;
+    canvas.onmousemove = world.sideMenu.myHover;
 
 	// var time = (new Date()).getTime();
 	animate();
@@ -58,7 +59,6 @@ function setCanvas() {
 
 // This is the animation loop, put all objects here!!
 function animate() {
-
 	// update
 	world.update();
 
