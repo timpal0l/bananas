@@ -24,7 +24,7 @@ function Smenu(height, width, bendAngle, parent) {
 
 	// Load images
 	var cogimg = document.createElement('img');
-	cogimg.src = "../../lib/cogs.jpg";
+	cogimg.src = "../../lib/newcog.png";
 	var undoimg = document.createElement('img');
 	undoimg.src = "../../lib/undo.svg";
 	var redoimg = document.createElement('img');
@@ -44,11 +44,16 @@ function Smenu(height, width, bendAngle, parent) {
 	var yellowimg = document.createElement('img');
 	yellowimg.src = "../../lib/yellow.png";
 
+	// Moving speed
+	this.linearSpeed = 110;
+	this.startx = 0;
+	this.starty = 70;
+
 	// Create buttons
-	this.cogButton = new Button(cogimg, 30, 120, 80, 70);
-	this.undoButton = new Button(undoimg, 30, 250, 30, 30);
-	this.redoButton = new Button(redoimg, 80, 250, 30, 30);
-	this.brushButton = new Button(brushimg, 30, 320, 80, 80);
+	this.cogButton = new Button(cogimg, (this.wi / 2) - 55, ((this.he /4) - 55) + this.starty / 2, 110, 110);
+	this.undoButton = new Button(undoimg, (this.wi / 3) - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
+	this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
+	this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, ((this.he /4)*3 - 40) + this.starty / 2, 80, 80);	
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
 	this.redButton = new Button(redimg,-30, 470, 30, 30);
@@ -57,10 +62,6 @@ function Smenu(height, width, bendAngle, parent) {
 	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25);
 	this.colorMenu = new Colormenu(600,0,5);
 	
-	// Moving speed
-	this.linearSpeed = 110;
-	this.startx = 0;
-	this.starty = 70;
 
 	this.draw = function() {
 		drawSideMenu(this);
