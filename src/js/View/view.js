@@ -38,6 +38,50 @@ function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }
 
+function drawTextBox(textbox) {
+	var words = textbox.text.split(' ');
+	var line = '';
+	var origtextboxy = textbox.y;
+	var height = 0;
+	var padding = 10;
+	var manyRows = false;
+	var width;
+	 
+
+	for (var i = 0; i < words.length; i++) {
+		var testLine = line + words[i] + ' ';
+		var metrics = context.measureText(testLine);
+		var testWidth = metrics.width;
+		if (testWidth > textbox.maxWidth - padding && i > 0) {
+			context.fillStyle = "white";
+			context.fillRect(textbox.x, textbox.y, textbox.maxWidth + padding, textbox.lineHeight);
+			context.font = '12pt Calibri';
+			context.fillStyle = '#333';
+			textbox.y += textbox.lineHeight;
+			height += textbox.lineHeight;
+			context.fillText(line, textbox.x + padding, textbox.y);
+			line = words[i] + ' ';
+			manyRows = true;
+		} else{
+			line = testLine;
+		}
+	}
+	if (manyRows == false) {
+		width = context.measureText(line).width + padding + 5;
+	} else{
+		width = textbox.maxWidth + padding;
+	}
+	context.fillStyle = "white";
+	context.fillRect(textbox.x, textbox.y, width, textbox.lineHeight + padding);
+	context.font = '12pt Calibri';
+	context.fillStyle = '#333';
+	textbox.y += textbox.lineHeight;
+	context.fillText(line, textbox.x + padding, textbox.y);
+	textbox.y = origtextboxy;
+	height += textbox.lineHeight + padding;
+	context.strokeRect(textbox.x, textbox.y, width, height);
+}
+
 function drawCogShape(context, cog, numPoints, grd) {
 	// draw cog teeth
 	context.beginPath();

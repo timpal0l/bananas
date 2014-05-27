@@ -64,35 +64,48 @@ function Smenu(height, width, bendAngle, parent) {
 	this.startx = 0;
 	this.starty = 70;
 
+	//tooltips
+	var ttCog = "Add a new cogwheel";
+	var ttUndo = "Undo";
+	var ttRedo = "Redo";
+	var ttBrush = "Change color of next cogwheel";
+	var ttLeft = "Hide side menu";
+	var ttRight = "Show side menu";
+	var ttRed = "Change next cogwheel to red";
+	var ttBlue = "Change next cogwheel to blue";
+	var ttGreen = "Change next cogwheel to green";
+	var ttYellow = "Change next cogwheel to yellow";
+
 	// Create buttons
-	this.cogButton = new Button(cogimg, (this.wi / 2) - 55, ((this.he /4) - 55) + this.starty / 2, 110, 110);
-	this.undoButton = new Button(undoimg, (this.wi / 3) - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
-	this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
-	this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, ((this.he /4)*3 - 40) + this.starty / 2, 80, 80);	
-	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
-	this.rButton = new Button(pilRight, 80, 20, 30, 30);
-	this.redButton = new Button(redimg,-30, 470, 30, 30);
-	this.blueButton = new Button(blueimg,-30, 500, 30, 30);
-	this.greenButton = new Button(greenimg,-30, 530, 30, 30);
-	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25);
+	this.cogButton = new Button(cogimg, (this.wi / 2) - 55, ((this.he /4) - 55) + this.starty / 2, 110, 110, ttCog);
+	this.undoButton = new Button(undoimg, (this.wi / 3) - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30, ttUndo);
+	this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30, ttRedo);
+	this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, ((this.he /4)*3 - 40) + this.starty / 2, 80, 80, ttBrush);	
+	this.lButton = new Button(pilLeft, 20, 20, 30, 30, ttLeft);
+	this.rButton = new Button(pilRight, 80, 20, 30, 30, ttRight);
+	this.redButton = new Button(redimg,-30, 470, 30, 30, ttRed);
+	this.blueButton = new Button(blueimg,-30, 500, 30, 30, ttBlue);
+	this.greenButton = new Button(greenimg,-30, 530, 30, 30, ttGreen);
+	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25, ttYellow);
 	this.colorMenu = new Colormenu(600,0,5);
 
     buttons.push(this.cogButton,
+    	this.redoButton,
         this.undoButton,
-        this.redoButton,
         this.brushButton,
-        this.lButton,
         this.rButton,
-        this.redButton,
-        this.blueButton,
+        this.lButton,
+        this.yellowButton,
         this.greenButton,
-        this.yellowButton
+        this.blueButton,
+        this.redButton
         )
 	
 
 	this.draw = function() {
 		drawSideMenu(this);
-        for(var i = 0; i < buttons.length - 1; i++){
+		this.colorMenu.draw();
+        for(var i = 0; i < buttons.length; i++){
             buttons[i].draw();
         }
 		
@@ -168,19 +181,23 @@ function Smenu(height, width, bendAngle, parent) {
 	};
 
     this.myHover = function(e) {
-        for(var i = 0; i < buttons.length - 1; i++){
+        for(var i = 0; i < buttons.length; i++){
             me.getMouse(e);
-            Logger(mx + " ," + my);
+            //Logger(mx + " ," + my);
             if (mx > buttons[i].x && mx < buttons[i].w + buttons[i].x && my > buttons[i].y
                 && my < buttons[i].h + buttons[i].y) {
+            	textBox = new TextBox(buttons[i].toolTipText, mx, my);
+            	buttons[i].toolTip = textBox;
                 if (buttons[i].enlarged == false){
                     buttons[i].toggle();
                     buttons[i].enlarged = true;
+                    buttons[i].showTT = true;
                 }
             }else {
                 if (buttons[i].enlarged == true){
                     buttons[i].toggle();
                     buttons[i].enlarged = false;
+                    buttons[i].showTT = false;
                 }
             }
         }
@@ -267,23 +284,32 @@ function Smenu(height, width, bendAngle, parent) {
 				&& my < red.h + red.y) {
 			color = '#FF9E9D';
 			color1 = '#AD0825';
+			cogB.img.lightColor = color;
+			cogB.img.darkColor = color1;
 	}
 		if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
 				&& my < blue.h + blue.y) {
 			color = '#2f42d4';
-			color1 = '#1f2d97';	
+			color1 = '#1f2d97';
+			cogB.img.lightColor = color;
+			cogB.img.darkColor = color1;
 		}
 
 		if (mx > green.x && mx < green.w + green.x && my > green.y
 				&& my < green.h + green.y) {
 			color = '#3dd42f';
 			color1 = '#29971f';	
+			cogB.img.lightColor = color;
+			cogB.img.darkColor = color1;
 		}
 		if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
 				&& my < yell.h + yell.y) {
 			color1 = '#f2bc18';
-			color = '#f2f218';	
+			color = '#f2f218';
+			cogB.img.lightColor = color;
+			cogB.img.darkColor = color1;
 		}
+		canvas.onmousemove = world.sideMenu.myHover;
 	
 
 	};

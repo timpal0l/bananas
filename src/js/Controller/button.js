@@ -1,4 +1,4 @@
-function Button(img, x, y, w, h) {
+function Button(img, x, y, w, h, toolTipText) {
 	this.img = img;
 	this.x = x;
 	this.y = y;
@@ -10,6 +10,9 @@ function Button(img, x, y, w, h) {
     this.originalOuterRadius = 0;
     this.originalInnerRadius = 0;
     this.originalMidRadius = 0;
+    this.toolTipText = toolTipText;
+    this.toolTip = null;
+    this.showTT = false;
 
     if (img instanceof Cog){
         this.originalOuterRadius = img.outerRadius;
@@ -24,6 +27,9 @@ function Button(img, x, y, w, h) {
             this.img.draw(context);
         }else {
             drawImg(this.img, this.x, this.y, this.w, this.h);
+        }
+        if (this.showTT == true && this.toolTip != null) {
+        	this.toolTip.draw();
         }
 
 	};

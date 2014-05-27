@@ -49,7 +49,7 @@ Cog.prototype.checkHit = function(ctx) {
 			var dist = Math.sqrt(absdx * absdx + absdy * absdy) - this.outerRadius
 					- cogs[i].midRadius;
 
-			if (dist < 1) { // since linewidth = 5
+			if (dist < 1) { 
 
 				theta = Math.atan2(dy, dx);
 				//theta *= 180/Math.PI; //radian to degrees
