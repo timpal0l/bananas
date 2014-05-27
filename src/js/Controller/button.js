@@ -34,29 +34,26 @@ function Button(img, x, y, w, h, toolTipText) {
 
 	};
 
-    this.toggle = function(){
-        if (this.enlarged){
-            if (this.img instanceof Cog){
-                this.img.outerRadius = this.originalOuterRadius;
-                this.img.innerRadius = this.originalInnerRadius;
-                this.img.midRadius = this.originalMidRadius;
-            }else {
-                this.w = this.originalW;
-                this.h = this.originalH;
-            }
+	this.toggle = function() {
+		if (this.enlarged) {
+			if (this.img instanceof Cog) {
+				this.img.outerRadius = this.originalOuterRadius;
+				this.img.innerRadius = this.originalInnerRadius;
+				this.img.midRadius = this.originalMidRadius;
+			} else {
+				this.w = this.originalW;
+				this.h = this.originalH;
+			}
 
-        }else{
-            if (this.img instanceof Cog){
-                this.img.outerRadius *= 1.06;
-                this.img.innerRadius *= 1.06;
-                this.img.midRadius *= 1.06;
-            }else {
-                this.w *= 1.1;
-                this.h *= 1.1;
-            }
-
-
-        }
-    }
+		} else {
+			if (this.img instanceof Cog) {
+				this.img.outerRadius *= 1.06;
+				this.img.innerRadius *= 1.06;
+				this.img.midRadius *= 1.06;
+			} else {
+				this.w *= 1.1;
+				this.h *= 1.1;
+			}
+		}
+	};
 }
-
