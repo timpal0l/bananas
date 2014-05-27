@@ -23,24 +23,28 @@ function Smenu(height, width, bendAngle, parent) {
 	var cR = 0;
 
 	// Load images
-    var cog = new Cog({
-        x : 60,
-        y : 150,
-        outerRadius : 50,
-        innerRadius : 15,
-        midRadius : 40,
-        holeRadius : 10,
-        numTeeth : 12,
-        theta : 0.14,
-        thetaSpeed : 0,
-        lightColor : color,
-        darkColor : color1,
-        clockwise : null,
-        engine : false,
-        connected : false
-    });
-    var cogimg = new Cog(cog);
-    var undoimg = document.createElement('img');
+	var cog = new Cog({
+		x : 60,
+		y : 150,
+		outerRadius : 50,
+		innerRadius : 15,
+		midRadius : 40,
+		holeRadius : 10,
+		numTeeth : 12,
+		theta : 0.14,
+		thetaSpeed : 0,
+		lightColor : color,
+		darkColor : color1,
+		clockwise : null,
+		engine : false,
+		connected : false
+	});
+	var cogimg = new Cog(cog);
+
+	// Buttons source
+	var tutimg = document.createElement('img');
+	tutimg.src = "../../lib/tut.png";
+	var undoimg = document.createElement('img');
 	undoimg.src = "../../lib/undo.svg";
 	var redoimg = document.createElement('img');
 	redoimg.src = "../../lib/redo.svg";
@@ -53,7 +57,7 @@ function Smenu(height, width, bendAngle, parent) {
 	var redimg = document.createElement('img');
 	redimg.src = "../../lib/red.png";
 	var blueimg = document.createElement('img');
-	blueimg.src= "../../lib/blue.png";
+	blueimg.src = "../../lib/blue.png";
 	var greenimg = document.createElement('img');
 	greenimg.src = "../../lib/green.png";
 	var yellowimg = document.createElement('img');
@@ -65,42 +69,45 @@ function Smenu(height, width, bendAngle, parent) {
 	this.starty = 70;
 
 	// Create buttons
-	this.cogButton = new Button(cogimg, (this.wi / 2) - 55, ((this.he /4) - 55) + this.starty / 2, 110, 110);
-	this.undoButton = new Button(undoimg, (this.wi / 3) - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
-	this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30);
-	this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, ((this.he /4)*3 - 40) + this.starty / 2, 80, 80);	
+	this.cogButton = new Button(cogimg, (this.wi / 2) - 55,
+			((this.he / 4) - 70) + this.starty / 2, 110, 110);
+
+	this.tutButton = this.brushButton = new Button(tutimg, (this.wi / 2) - 40,
+			((this.he / 4) * 3 - 175) + this.starty / 2, 80, 80);
+
+	this.undoButton = new Button(undoimg, (this.wi / 3) - 15,
+			((this.he / 2) + 40) + this.starty / 2, 30, 30);
+
+	this.redoButton = new Button(redoimg, (this.wi / 3) * 2 - 15,
+			((this.he / 2) + 40) + this.starty / 2, 30, 30);
+
+	this.brushButton = new Button(brushimg, (this.wi / 2) - 40,
+			((this.he / 4) * 3 - 10) + this.starty / 2, 80, 80);
+
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30);
-	this.redButton = new Button(redimg,-30, 470, 30, 30);
-	this.blueButton = new Button(blueimg,-30, 500, 30, 30);
-	this.greenButton = new Button(greenimg,-30, 530, 30, 30);
-	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25);
-	this.colorMenu = new Colormenu(600,0,5);
+	this.redButton = new Button(redimg, -30, 470, 30, 30);
+	this.blueButton = new Button(blueimg, -30, 500, 30, 30);
+	this.greenButton = new Button(greenimg, -30, 530, 30, 30);
+	this.yellowButton = new Button(yellowimg, -30, 565, 25, 25);
+	this.colorMenu = new Colormenu(600, 0, 5);
 
-    buttons.push(this.cogButton,
-        this.undoButton,
-        this.redoButton,
-        this.brushButton,
-        this.lButton,
-        this.rButton,
-        this.redButton,
-        this.blueButton,
-        this.greenButton,
-        this.yellowButton
-        )
-	
+	buttons.push(this.cogButton, this.tutButton, this.undoButton,
+			this.redoButton, this.brushButton, this.lButton, this.rButton,
+			this.redButton, this.blueButton, this.greenButton,
+			this.yellowButton);
 
 	this.draw = function() {
 		drawSideMenu(this);
-        for(var i = 0; i < buttons.length - 1; i++){
-            buttons[i].draw();
-        }
-		
+		for (var i = 0; i < buttons.length - 1; i++) {
+			buttons[i].draw();
+		}
+
 	};
 	this.stop = function() {
 		this.dir = 0;
 	};
-	this.cMenustop = function(){
+	this.cMenustop = function() {
 		this.cdirr = 0;
 	};
 
@@ -111,6 +118,7 @@ function Smenu(height, width, bendAngle, parent) {
 			// Move menu to the right
 			this.wi += this.linearSpeed * this.dir;
 			this.cogButton.x += 110 * this.dir;
+			this.tutButton.x += 110 * this.dir;
 			this.undoButton.x += 110 * this.dir;
 			this.brushButton.x += 110 * this.dir;
 			this.redoButton.x += 110 * this.dir;
@@ -125,6 +133,7 @@ function Smenu(height, width, bendAngle, parent) {
 			// Move menu to the left
 			this.wi += this.linearSpeed * this.dir;
 			this.cogButton.x += 110 * this.dir;
+			this.tutButton.x += 110 * this.dir;
 			this.undoButton.x += 110 * this.dir;
 			this.brushButton.x += 110 * this.dir;
 			this.redoButton.x += 110 * this.dir;
@@ -136,55 +145,54 @@ function Smenu(height, width, bendAngle, parent) {
 		else if (moveL > 0 && this.dir == -1) {
 			this.stop();
 		}
-
 	};
 
-	this.colorUpdate = function(){
-		if(cR == 0 && cL == 1){
-			this.cdirr=1;
-			this.colorMenu.w += 80* this.cdirr;
+	this.colorUpdate = function() {
+		if (cR == 0 && cL == 1) {
+			this.cdirr = 1;
+			this.colorMenu.w += 80 * this.cdirr;
 			this.redButton.x += 50 * this.cdirr;
-			this.blueButton.x +=50 * this.cdirr;
+			this.blueButton.x += 50 * this.cdirr;
 			this.greenButton.x += 50 * this.cdirr;
 			this.yellowButton.x += 50 * this.cdirr;
 			cR = 1;
-			cL = 0; 
+			cL = 0;
 			this.cMenustop();
-			}		
-		else if(cL == 0 && cR == 1){
+		} else if (cL == 0 && cR == 1) {
 			this.cdirr = -1;
 			this.colorMenu.w += 80 * this.cdirr;
 			this.redButton.x += 50 * this.cdirr;
 			this.blueButton.x += 50 * this.cdirr;
 			this.greenButton.x += 50 * this.cdirr;
-			this.yellowButton.x += 50 * this.cdirr;			
+			this.yellowButton.x += 50 * this.cdirr;
 
 			cR = 0;
 			cL = 1;
 			this.cMenustop();
+		} else {
+			this.cMenustop();
 		}
-		else {this.cMenustop();}
 
 	};
 
-    this.myHover = function(e) {
-        for(var i = 0; i < buttons.length - 1; i++){
-            me.getMouse(e);
-            Logger(mx + " ," + my);
-            if (mx > buttons[i].x && mx < buttons[i].w + buttons[i].x && my > buttons[i].y
-                && my < buttons[i].h + buttons[i].y) {
-                if (buttons[i].enlarged == false){
-                    buttons[i].toggle();
-                    buttons[i].enlarged = true;
-                }
-            }else {
-                if (buttons[i].enlarged == true){
-                    buttons[i].toggle();
-                    buttons[i].enlarged = false;
-                }
-            }
-        }
-    }
+	this.myHover = function(e) {
+		for (var i = 0; i < buttons.length - 1; i++) {
+			me.getMouse(e);
+			Logger(mx + " ," + my);
+			if (mx > buttons[i].x && mx < buttons[i].w + buttons[i].x
+					&& my > buttons[i].y && my < buttons[i].h + buttons[i].y) {
+				if (buttons[i].enlarged == false) {
+					buttons[i].toggle();
+					buttons[i].enlarged = true;
+				}
+			} else {
+				if (buttons[i].enlarged == true) {
+					buttons[i].toggle();
+					buttons[i].enlarged = false;
+				}
+			}
+		}
+	};
 
 	this.myClick = function(e) {
 
@@ -199,7 +207,6 @@ function Smenu(height, width, bendAngle, parent) {
 		var blue = me.blueButton;
 		var green = me.greenButton;
 		var yell = me.yellowButton;
-
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
@@ -217,7 +224,7 @@ function Smenu(height, width, bendAngle, parent) {
 				darkColor : color1,
 				clockwise : null,
 				engine : false,
-                connected : false
+				connected : false
 			});
 
 			parent.addCog(cog);
@@ -239,6 +246,7 @@ function Smenu(height, width, bendAngle, parent) {
 			me.colorUpdate();
 
 		}
+
 		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
 			// återställ det senaste borttagna kugghjulet från tempvariabeln
@@ -248,7 +256,6 @@ function Smenu(height, width, bendAngle, parent) {
 				var tempCog = redoCogs.pop();
 				cogs.push(tempCog);
 			}
-
 		}
 
 		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
@@ -267,24 +274,23 @@ function Smenu(height, width, bendAngle, parent) {
 				&& my < red.h + red.y) {
 			color = '#FF9E9D';
 			color1 = '#AD0825';
-	}
+		}
 		if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
 				&& my < blue.h + blue.y) {
 			color = '#2f42d4';
-			color1 = '#1f2d97';	
+			color1 = '#1f2d97';
 		}
 
 		if (mx > green.x && mx < green.w + green.x && my > green.y
 				&& my < green.h + green.y) {
 			color = '#3dd42f';
-			color1 = '#29971f';	
+			color1 = '#29971f';
 		}
 		if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
 				&& my < yell.h + yell.y) {
 			color1 = '#f2bc18';
-			color = '#f2f218';	
+			color = '#f2f218';
 		}
-	
 
 	};
 
