@@ -22,6 +22,7 @@ function Smenu(height, width, bendAngle, parent) {
 	var cL = 1;
 	var cR = 0;
 
+
 	// Load images
 	var cog = new Cog({
 		x : 60,
@@ -64,7 +65,7 @@ function Smenu(height, width, bendAngle, parent) {
 	yellowimg.src = "../../lib/yellow.png";
 
 	// Moving speed
-	this.linearSpeed = 110;
+	this.linearSpeed = 150;
 	this.startx = 0;
 	this.starty = 70;
 
@@ -135,11 +136,11 @@ function Smenu(height, width, bendAngle, parent) {
 		if (moveR == 0 && this.dir == 1) {
 			// Move menu to the right
 			this.wi += this.linearSpeed * this.dir;
-			this.cogButton.x += 110 * this.dir;
-			this.tutButton.x += 110 * this.dir;
-			this.undoButton.x += 110 * this.dir;
-			this.brushButton.x += 110 * this.dir;
-			this.redoButton.x += 110 * this.dir;
+			this.cogButton.img.x += this.linearSpeed * this.dir;
+			this.tutButton.x += this.linearSpeed * this.dir;
+			this.undoButton.x += this.linearSpeed * this.dir;
+			this.brushButton.x += this.linearSpeed * this.dir;
+			this.redoButton.x += this.linearSpeed * this.dir;
 			moveL = 0;
 			moveR = 1;
 			this.stop();
@@ -150,11 +151,11 @@ function Smenu(height, width, bendAngle, parent) {
 		} else if (moveL == 0 && this.dir == -1) {
 			// Move menu to the left
 			this.wi += this.linearSpeed * this.dir;
-			this.cogButton.x += 110 * this.dir;
-			this.tutButton.x += 110 * this.dir;
-			this.undoButton.x += 110 * this.dir;
-			this.brushButton.x += 110 * this.dir;
-			this.redoButton.x += 110 * this.dir;
+			this.cogButton.img.x += this.linearSpeed * this.dir;
+			this.tutButton.x += this.linearSpeed * this.dir;
+			this.undoButton.x += this.linearSpeed * this.dir;
+			this.brushButton.x += this.linearSpeed * this.dir;
+			this.redoButton.x += this.linearSpeed * this.dir;
 			moveR = 0;
 			moveL = 1;
 			this.stop();
@@ -234,7 +235,7 @@ function Smenu(height, width, bendAngle, parent) {
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
 			var cog = new Cog({
-				x : 1200,
+				x : 200,
 				y : 100,
 				outerRadius : 50,
 				innerRadius : 15,
@@ -247,7 +248,8 @@ function Smenu(height, width, bendAngle, parent) {
 				darkColor : color1,
 				clockwise : null,
 				engine : false,
-				connected : false
+				connected : false,
+				parent : null
 			});
 
 			parent.addCog(cog);
