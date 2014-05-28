@@ -69,7 +69,7 @@ function Smenu(height, width, bendAngle) {
 	yellowimg.src = "../../lib/yellow.png";
 
 	// Moving speed
-	this.linearSpeed = 150;
+	this.linearSpeed = 5;
 	this.startx = 0;
 	this.starty = 70;
 
