@@ -17,6 +17,7 @@ function Cog(config) {
 	this.originalDark = config.darkColor;
 	this.engine = config.engine;
     this.connected = config.connected;
+    this.parent = config.parent;
 }
 
 /*
@@ -37,6 +38,23 @@ Cog.prototype.draw = function(ctx) {
 	grd.addColorStop(1, this.darkColor);
 	drawCogShape(context, this, numPoints, grd);
 };
+
+Cog.prototype.checkParent = function() {
+	if (this.parent != null) {
+		if (this.parent.connected == true) {
+			this.clockwise = (this.parent.clockwise == true ? false : true);
+			this.thetaSpeed = 0.002;
+            this.connected = true;
+		} else{
+			this.parent = null;
+			cogctx.globalAlpha = 1.0;
+			this.thetaSpeed = 0;
+            this.connected = false;
+		}
+	} 
+};
+
+
 
 Cog.prototype.checkHit = function(ctx) {
 	var l = cogs.length;
@@ -63,14 +81,12 @@ Cog.prototype.checkHit = function(ctx) {
 
 				cogctx.globalAlpha = 0.5;
 
-				if (cogs[i].engine == true) {
+				if (cogs[i].engine == true || cogs[i].connected == true) {
 					this.clockwise = (cogs[i].clockwise == true ? false : true);
 					this.thetaSpeed = 0.002;
                     this.connected = true;
-				} else if (cogs[i].connected == true) {
-					this.clockwise = (cogs[i].clockwise == true ? false : true);
-					this.thetaSpeed = 0.002;
-                    this.connected = true;
+                    this.parent = cogs[i];
+                    
 				}
                 world.myUp();
                 return;
@@ -79,6 +95,9 @@ Cog.prototype.checkHit = function(ctx) {
 				cogctx.globalAlpha = 1.0;
                 this.thetaSpeed = 0;
                 this.connected = false;
+                this.parent = null;
+                cogs[i].checkParent();
+                
 
 			};
 		}

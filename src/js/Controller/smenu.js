@@ -26,6 +26,7 @@ function Smenu(height, width, bendAngle) {
 	var cL = 1;
 	var cR = 0;
 
+
 	// Load images
 	var cog = new Cog({
 		x : 60,
@@ -67,6 +68,10 @@ function Smenu(height, width, bendAngle) {
 	var yellowimg = document.createElement('img');
 	yellowimg.src = "../../lib/yellow.png";
 
+	// Moving speed
+	this.linearSpeed = 150;
+	this.startx = 0;
+	this.starty = 70;
 
 
 	//tooltips
@@ -137,6 +142,7 @@ function Smenu(height, width, bendAngle) {
 			this.startx += this.linearSpeed * this.dir;
 			this.cogButton.img.x += this.linearSpeed * this.dir;
             this.cogButton.x += this.linearSpeed * this.dir;
+
 			this.tutButton.x += this.linearSpeed * this.dir;
 			this.undoButton.x += this.linearSpeed * this.dir;
 			this.brushButton.x += this.linearSpeed * this.dir;
@@ -147,12 +153,14 @@ function Smenu(height, width, bendAngle) {
                 moveR = 1;
                 this.stop();
             }
+
 		}
 		// menu has been moved to the right, dont move
 		else if (moveR > 0 && this.dir == 1) {
 			this.stop();
 		} else if (moveL == 0 && this.dir == -1) {
 			// Move menu to the left
+
 			this.startx += this.linearSpeed * this.dir;
 			this.cogButton.img.x += this.linearSpeed * this.dir;
             this.cogButton.x += this.linearSpeed * this.dir;
@@ -166,6 +174,7 @@ function Smenu(height, width, bendAngle) {
                 moveL = 1;
                 this.stop();
             }
+
 		}
 		// menu has been moved to the left, dont move
 		else if (moveL > 0 && this.dir == -1) {
@@ -236,7 +245,7 @@ function Smenu(height, width, bendAngle) {
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
 			var cog = new Cog({
-				x : 1200,
+				x : 200,
 				y : 100,
 				outerRadius : 50,
 				innerRadius : 15,
@@ -249,7 +258,8 @@ function Smenu(height, width, bendAngle) {
 				darkColor : color1,
 				clockwise : null,
 				engine : false,
-				connected : false
+				connected : false,
+				parent : null
 			});
 
 			world.addCog(cog);
