@@ -34,6 +34,8 @@ function setCanvas() {
 	cogcanvas = document.createElement('canvas');
 	cogctx = cogcanvas.getContext('2d');
 
+
+
 	canvas.height = HEIGHT;
 	canvas.width = WIDTH;
 	glasspanecanvas.height = HEIGHT;

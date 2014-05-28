@@ -220,9 +220,11 @@ function Smenu(height, width, bendAngle) {
     }
 
 
+    //Clicking on buttons
 	this.myClick = function(e) {
 
 		me.getMouse(e);
+        var tutB = me.tutButton;
 		var cogB = me.cogButton;
 		var larrow = me.lButton;
 		var rarrow = me.rButton;
@@ -233,6 +235,8 @@ function Smenu(height, width, bendAngle) {
 		var blue = me.blueButton;
 		var green = me.greenButton;
 		var yell = me.yellowButton;
+
+
 
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
@@ -257,16 +261,16 @@ function Smenu(height, width, bendAngle) {
 			world.addCog(cog);
 		}
 
-		if (mx > rarrow.x && mx < rarrow.w + rarrow.x && my > rarrow.y
+		else if (mx > rarrow.x && mx < rarrow.w + rarrow.x && my > rarrow.y
 				&& my < rarrow.h + rarrow.y) {
 			me.dir = 1;
 		}
 
-		if (mx > larrow.x && mx < larrow.w + larrow.x && my > larrow.y
+		else if (mx > larrow.x && mx < larrow.w + larrow.x && my > larrow.y
 				&& my < larrow.h + larrow.y) {
 			me.dir = -1;
 		}
-		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
+		else if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
             Logger(world.colorMenu.dir);
             if (world.colorMenu.dir == 0){
@@ -283,7 +287,13 @@ function Smenu(height, width, bendAngle) {
 
 		}
 
-		if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
+        else if (mx > tutB.x && mx < tutB.w + tutB.x && my > tutB.y
+            && my < tutB.h + tutB.y) {
+
+            world.startTutorial();
+        }
+
+		else if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
 			// återställ det senaste borttagna kugghjulet från tempvariabeln
 			if (redoCogs.length == 0) {
@@ -294,7 +304,7 @@ function Smenu(height, width, bendAngle) {
 			}
 		}
 
-		if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
+		else if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
 			if (cogs.length == 1) {
 				return;
@@ -306,7 +316,7 @@ function Smenu(height, width, bendAngle) {
 			// variabel
 		}
 
-		if (mx > red.x && mx < red.w + red.x && my > red.y
+		else if (mx > red.x && mx < red.w + red.x && my > red.y
 				&& my < red.h + red.y) {
 			color = '#FF9E9D';
 			color1 = '#AD0825';
@@ -314,7 +324,7 @@ function Smenu(height, width, bendAngle) {
 			cogB.img.darkColor = color1;
 		}
 
-		if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
+		else if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
 				&& my < blue.h + blue.y) {
 			color = '#2f42d4';
 			color1 = '#1f2d97';
@@ -322,14 +332,14 @@ function Smenu(height, width, bendAngle) {
 			cogB.img.darkColor = color1;
 		}
 
-		if (mx > green.x && mx < green.w + green.x && my > green.y
+		else if (mx > green.x && mx < green.w + green.x && my > green.y
 				&& my < green.h + green.y) {
 			color = '#3dd42f';
 			color1 = '#29971f';	
 			cogB.img.lightColor = color;
 			cogB.img.darkColor = color1;
 		}
-		if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
+		else if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
 				&& my < yell.h + yell.y) {
 			color1 = '#f2bc18';
 			color = '#f2f218';

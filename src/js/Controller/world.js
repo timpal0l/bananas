@@ -8,6 +8,7 @@ function World() {
 	var offsetx;
 	var offsety;
 	var me = this;
+    this.tutOn = false;
 
 	this.lastTime = (new Date()).getTime();
 
@@ -22,6 +23,14 @@ function World() {
 	this.sideMenu = new Smenu(450, 150, 20);
     this.colorMenu = new Colormenu(600,50,0);
 	
+
+    this.startTutorial = function(){
+    this.tutorial = new Tutorial(context);
+    this.tutorial.blurContext();
+    if (this.tutOn == false){
+        this.tutOn = true;
+    }
+    }
 
 	this.addCog = function(config) {
 		Logger("[World.addCog]: addCog called. Object:");
@@ -48,6 +57,9 @@ function World() {
 			mySel.draw(cogctx);
 		}
 		context.drawImage(cogcanvas, 0, 0);
+        if(this.tutOn){
+            context.drawImage(this.tutorial.tutcanvas, 0, 0);
+        }
 	};
 
 	this.update = function() {
@@ -77,9 +89,8 @@ function World() {
 		}
 	};
 
-	// @TODO
-	// fix hitbox for cog.
-	// Use getImageData to check hitbox with new cog?
+
+	// Use getImageData to check hitbox with new cog
 	this.hitBox = function(e) {
 		this.getMouse(e);
 		var l = cogs.length;
@@ -99,12 +110,6 @@ function World() {
 				mySel.x = mx - offsetx;
 				mySel.y = my - offsety;
 				isDrag = true;
-
-				// Logger("[World.hitBox]: xCenter: " + mySel.x);
-				// Logger("[World.hitBox]: yCenter: " + mySel.y);
-				//
-				// Logger("[World.hitBox]: xCog: " + offsetx);
-				// Logger("[World.hitBox]: yCog: " + offsety);
 
 				canvas.onmousemove = this.myMove;
 				mousePressed = false;
