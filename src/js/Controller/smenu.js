@@ -88,16 +88,11 @@ function Smenu(height, width, bendAngle) {
 	var ttYellow = "Change next cogwheel to yellow";
 
 	// Create buttons
-	this.cogButton = new Button(cogimg, (this.wi / 2) - 55, 
-			((this.he /4) - 70) + this.starty / 2, 110, 110, ttCog);
-	this.tutButton = this.brushButton = new Button(tutimg, (this.wi / 2) - 40,
-			((this.he / 4) * 3 - 175) + this.starty / 2, 80, 80, ttTut);
-	this.undoButton = new Button(undoimg, (this.wi / 3) - 15, 
-			((this.he /2) + 40) + this.starty / 2, 30, 30, ttUndo);
-	this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, 
-			((this.he /2) + 40) + this.starty / 2, 30, 30, ttRedo);
-	this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, 
-			((this.he /4)*3 - 10) + this.starty / 2, 80, 80, ttBrush);	
+	this.tutButton = this.brushButton = new Button(tutimg, 140, 10, 40, 40, ttTut);
+    this.cogButton = new Button(cogimg, (this.wi / 2) - 55, ((this.he /4) - 55) + this.starty / 2, 110, 110, ttCog );
+    this.undoButton = new Button(undoimg, (this.wi / 3) - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30, ttUndo);
+    this.redoButton = new Button(redoimg, (this.wi / 3)*2  - 15, ((this.he /2) - 15) + this.starty / 2, 30, 30, ttRedo);
+    this.brushButton = new Button(brushimg, (this.wi / 2)  - 40, ((this.he /4)*3 - 40) + this.starty / 2, 80, 80, ttBrush);
 	this.lButton = new Button(pilLeft, 20, 20, 30, 30, ttLeft);
 	this.rButton = new Button(pilRight, 80, 20, 30, 30, ttRight);
 	this.redButton = new Button(redimg,-30, 470, 30, 30, ttRed);
@@ -142,8 +137,6 @@ function Smenu(height, width, bendAngle) {
 			this.startx += this.linearSpeed * this.dir;
 			this.cogButton.img.x += this.linearSpeed * this.dir;
             this.cogButton.x += this.linearSpeed * this.dir;
-
-			this.tutButton.x += this.linearSpeed * this.dir;
 			this.undoButton.x += this.linearSpeed * this.dir;
 			this.brushButton.x += this.linearSpeed * this.dir;
 			this.redoButton.x += this.linearSpeed * this.dir;
@@ -164,7 +157,6 @@ function Smenu(height, width, bendAngle) {
 			this.startx += this.linearSpeed * this.dir;
 			this.cogButton.img.x += this.linearSpeed * this.dir;
             this.cogButton.x += this.linearSpeed * this.dir;
-			this.tutButton.x += this.linearSpeed * this.dir;
 			this.undoButton.x += this.linearSpeed * this.dir;
 			this.brushButton.x += this.linearSpeed * this.dir;
 			this.redoButton.x += this.linearSpeed * this.dir;
