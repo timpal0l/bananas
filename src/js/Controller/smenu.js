@@ -1,15 +1,19 @@
-function Smenu(height, width, bendAngle, parent) {
+function Smenu(height, width, bendAngle) {
 
 	// Angle on the rounded corner
 	this.bendAngle = bendAngle;
 
-	this.parent = parent;
 	this.wi = width;
-	this.he = (height * this.wi);
+    this.maxWidth = this.wi;
+	this.he = height;
 
 	// Moving direction
 	this.dir = 0;
-	this.cdir = 0;
+
+    // Moving speed
+    this.linearSpeed = 5;
+    this.startx = 0;
+    this.starty = 70;
 
 	var me = this;
 	var mx;
@@ -63,10 +67,7 @@ function Smenu(height, width, bendAngle, parent) {
 	var yellowimg = document.createElement('img');
 	yellowimg.src = "../../lib/yellow.png";
 
-	// Moving speed
-	this.linearSpeed = 110;
-	this.startx = 0;
-	this.starty = 70;
+
 
 	//tooltips
 	var ttCog = "Add a new cogwheel";
@@ -98,7 +99,7 @@ function Smenu(height, width, bendAngle, parent) {
 	this.blueButton = new Button(blueimg,-30, 500, 30, 30, ttBlue);
 	this.greenButton = new Button(greenimg,-30, 530, 30, 30, ttGreen);
 	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25, ttYellow);
-	this.colorMenu = new Colormenu(600,0,5);
+
 
     buttons.push(this.cogButton,
     	this.tutButton,
@@ -112,11 +113,10 @@ function Smenu(height, width, bendAngle, parent) {
         this.blueButton,
         this.redButton
         )
-	
+
 
 	this.draw = function() {
 		drawSideMenu(this);
-		this.colorMenu.draw();
         for(var i = 0; i < buttons.length; i++){
             buttons[i].draw();
         }
@@ -126,7 +126,7 @@ function Smenu(height, width, bendAngle, parent) {
 		this.dir = 0;
 	};
 	this.cMenustop = function() {
-		this.cdirr = 0;
+        world.colorMenu.dir = 0;
 	};
 
 	// Update the position of the menu
@@ -134,30 +134,38 @@ function Smenu(height, width, bendAngle, parent) {
 
 		if (moveR == 0 && this.dir == 1) {
 			// Move menu to the right
-			this.wi += this.linearSpeed * this.dir;
-			this.cogButton.x += 110 * this.dir;
-			this.tutButton.x += 110 * this.dir;
-			this.undoButton.x += 110 * this.dir;
-			this.brushButton.x += 110 * this.dir;
-			this.redoButton.x += 110 * this.dir;
-			moveL = 0;
-			moveR = 1;
-			this.stop();
+			this.startx += this.linearSpeed * this.dir;
+			this.cogButton.img.x += this.linearSpeed * this.dir;
+            this.cogButton.x += this.linearSpeed * this.dir;
+			this.tutButton.x += this.linearSpeed * this.dir;
+			this.undoButton.x += this.linearSpeed * this.dir;
+			this.brushButton.x += this.linearSpeed * this.dir;
+			this.redoButton.x += this.linearSpeed * this.dir;
+
+            if (this.startx > -10) {
+                moveL = 0;
+                moveR = 1;
+                this.stop();
+            }
 		}
 		// menu has been moved to the right, dont move
 		else if (moveR > 0 && this.dir == 1) {
 			this.stop();
 		} else if (moveL == 0 && this.dir == -1) {
 			// Move menu to the left
-			this.wi += this.linearSpeed * this.dir;
-			this.cogButton.x += 110 * this.dir;
-			this.tutButton.x += 110 * this.dir;
-			this.undoButton.x += 110 * this.dir;
-			this.brushButton.x += 110 * this.dir;
-			this.redoButton.x += 110 * this.dir;
-			moveR = 0;
-			moveL = 1;
-			this.stop();
+			this.startx += this.linearSpeed * this.dir;
+			this.cogButton.img.x += this.linearSpeed * this.dir;
+            this.cogButton.x += this.linearSpeed * this.dir;
+			this.tutButton.x += this.linearSpeed * this.dir;
+			this.undoButton.x += this.linearSpeed * this.dir;
+			this.brushButton.x += this.linearSpeed * this.dir;
+			this.redoButton.x += this.linearSpeed * this.dir;
+
+            if (this.startx < -140) {
+                moveR = 0;
+                moveL = 1;
+                this.stop();
+            }
 		}
 		// menu has been moved to the left, dont move
 		else if (moveL > 0 && this.dir == -1) {
@@ -166,31 +174,25 @@ function Smenu(height, width, bendAngle, parent) {
 	};
 
 	this.colorUpdate = function() {
-		if (cR == 0 && cL == 1) {
-			this.cdirr = 1;
-			this.colorMenu.w += 80 * this.cdirr;
-			this.redButton.x += 50 * this.cdirr;
-			this.blueButton.x += 50 * this.cdirr;
-			this.greenButton.x += 50 * this.cdirr;
-			this.yellowButton.x += 50 * this.cdirr;
-			cR = 1;
-			cL = 0;
-			this.cMenustop();
-		} else if (cL == 0 && cR == 1) {
-			this.cdirr = -1;
-			this.colorMenu.w += 80 * this.cdirr;
-			this.redButton.x += 50 * this.cdirr;
-			this.blueButton.x += 50 * this.cdirr;
-			this.greenButton.x += 50 * this.cdirr;
-			this.yellowButton.x += 50 * this.cdirr;
-
-			cR = 0;
-			cL = 1;
-			this.cMenustop();
-		} else {
-			this.cMenustop();
+        if (world.colorMenu.dir == 1) {
+			world.colorMenu.startx += this.linearSpeed * world.colorMenu.dir;
+			this.redButton.x += this.linearSpeed * world.colorMenu.dir;
+			this.blueButton.x += this.linearSpeed * world.colorMenu.dir;
+			this.greenButton.x += this.linearSpeed * world.colorMenu.dir;
+			this.yellowButton.x += this.linearSpeed * world.colorMenu.dir;
+            if (world.colorMenu.startx > -10) {
+                this.cMenustop();
+            }
+		} else if (world.colorMenu.dir == -1) {
+			world.colorMenu.startx += this.linearSpeed * world.colorMenu.dir;
+            this.redButton.x += this.linearSpeed * world.colorMenu.dir;
+            this.blueButton.x += this.linearSpeed * world.colorMenu.dir;
+            this.greenButton.x += this.linearSpeed * world.colorMenu.dir;
+            this.yellowButton.x += this.linearSpeed * world.colorMenu.dir;
+            if (world.colorMenu.startx < -40) {
+                this.cMenustop();
+            }
 		}
-
 	};
 
     this.myHover = function(e) {
@@ -250,23 +252,32 @@ function Smenu(height, width, bendAngle, parent) {
 				connected : false
 			});
 
-			parent.addCog(cog);
+			world.addCog(cog);
 		}
 
 		if (mx > rarrow.x && mx < rarrow.w + rarrow.x && my > rarrow.y
 				&& my < rarrow.h + rarrow.y) {
 			me.dir = 1;
-			me.update();
 		}
 
 		if (mx > larrow.x && mx < larrow.w + larrow.x && my > larrow.y
 				&& my < larrow.h + larrow.y) {
 			me.dir = -1;
-			me.update();
 		}
 		if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
-			me.colorUpdate();
+            Logger(world.colorMenu.dir);
+            if (world.colorMenu.dir == 0){
+                if(world.colorMenu.startx < -40){
+                    world.colorMenu.dir = 1;
+                }else{
+                    world.colorMenu.dir = -1;
+                }
+            }else {
+                world.colorMenu.dir *= -1;
+            }
+            Logger(world.colorMenu.dir);
+
 
 		}
 

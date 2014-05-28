@@ -19,7 +19,8 @@ function World() {
 		return my;
 	};
 
-	this.sideMenu = new Smenu(3, 150, 30, this);
+	this.sideMenu = new Smenu(450, 150, 20);
+    this.colorMenu = new Colormenu(600,50,0);
 	
 
 	this.addCog = function(config) {
@@ -32,6 +33,8 @@ function World() {
 
 	this.draw = function() {
 		this.sideMenu.draw();
+        this.colorMenu.draw();
+
 		var l = cogs.length;
 		for (var i = 0; i < l; i++) {
 			if (mySel === cogs[i]) {
@@ -50,6 +53,8 @@ function World() {
 	this.update = function() {
 		var time = (new Date()).getTime();
 		var timeDiff = time - this.lastTime;
+        this.sideMenu.update();
+        this.sideMenu.colorUpdate();
 		for (var i = 0; i < cogs.length; i++) {
 			var cog = cogs[i];
 
