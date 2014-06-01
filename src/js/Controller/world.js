@@ -22,14 +22,24 @@ function World() {
 
 	this.sideMenu = new Smenu(450, 150, 20);
     this.colorMenu = new Colormenu(600,50,0);
+
 	
+    this.myClick = function(e){
+        world.sideMenu.myClick(e);
+        if (world.tutorial){
+            world.tutorial.tutClick(e);
+        }
+    }
 
     this.startTutorial = function(){
-    this.tutorial = new Tutorial(context);
-    this.tutorial.blurContext();
-    if (this.tutOn == false){
+        if (this.tutOn == false){
+        this.tutorial = new Tutorial(context);
+        this.tutorial.blurContext();
+        this.tutorial.startStory();
         this.tutOn = true;
-    }
+        }else {
+            this.tutorial.endTutorial();
+        }
     }
 
 	this.addCog = function(config) {
@@ -41,6 +51,7 @@ function World() {
 	};
 
 	this.draw = function() {
+
 		this.sideMenu.draw();
         this.colorMenu.draw();
 
@@ -58,7 +69,11 @@ function World() {
 		}
 		context.drawImage(cogcanvas, 0, 0);
         if(this.tutOn){
+            this.tutorial.tuttextctx.clearRect(0,0,WIDTH,HEIGHT);
+            this.tutorial.draw();
             context.drawImage(this.tutorial.tutcanvas, 0, 0);
+            context.drawImage(this.tutorial.tuttextcanvas,0,0);
+
         }
 	};
 

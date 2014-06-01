@@ -18,6 +18,7 @@ function Cog(config) {
 	this.engine = config.engine;
     this.connected = config.connected;
     this.parent = config.parent;
+    this.visible = config.visible;
 }
 
 /*
@@ -26,17 +27,20 @@ function Cog(config) {
  */
 
 Cog.prototype.draw = function(ctx) {
-	var context = ctx;
+	if (this.visible){
+        var context = ctx;
 
-	context.save();
-	var numPoints = this.numTeeth * 2;
+        context.save();
+        var numPoints = this.numTeeth * 2;
 
-	// cog body gradient
-	var grd = context.createLinearGradient(this.x - 100, this.y - 100,
-			this.x + 100, this.y + 100);
-	grd.addColorStop(0, this.lightColor);
-	grd.addColorStop(1, this.darkColor);
-	drawCogShape(context, this, numPoints, grd);
+        // cog body gradient
+        var grd = context.createLinearGradient(this.x - 100, this.y - 100,
+                this.x + 100, this.y + 100);
+        grd.addColorStop(0, this.lightColor);
+        grd.addColorStop(1, this.darkColor);
+        drawCogShape(context, this, numPoints, grd);
+    }
+
 };
 
 Cog.prototype.checkParent = function() {

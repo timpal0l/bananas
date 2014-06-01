@@ -3,6 +3,8 @@
 cogs = [];
 redoCogs = [];
 buttons = [];
+tutorialTextBoxes = [];
+tutorialButtons = [];
 
 var cogEngine = new Cog({
 	x : 650,
@@ -19,5 +21,6 @@ var cogEngine = new Cog({
 	clockwise : false,
 	engine : true,
     connected : true,
-    parent : null
+    parent : null,
+    visible : true
 });

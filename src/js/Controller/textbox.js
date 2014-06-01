@@ -4,9 +4,10 @@ function TextBox(text, x, y) {
 	this.y = y;
 	this.maxWidth = 150;
 	this.lineHeight = 15;
+    this.padding = 10;
 
-	this.draw = function() {
-		drawTextBox(this);
+	this.draw = function(context) {
+		drawTextBox(context,this,this.padding);
 	};
 
 }

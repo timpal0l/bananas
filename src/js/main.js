@@ -52,7 +52,7 @@ function setCanvas() {
 
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
-	canvas.onclick = world.sideMenu.myClick;
+	canvas.onclick = world.myClick;
     canvas.onmousemove = world.sideMenu.myHover;
 
 	// var time = (new Date()).getTime();

@@ -15,45 +15,67 @@ function drawImg(img, x, y, w, h) {
 	context.drawImage(img, x, y, w, h);
 }
 
-function drawTextBox(textbox) {
+function drawRectButton(button,context,style){
+    context.fillStyle = style;
+    context.fillRect(button.x,button.y,button.w,button.h);
+    context.font = '12pt Calibri';
+    context.fillStyle = '#333';
+    context.fillText(button.text,button.x + button.w/5,button.y + button.h/3*2);
+}
+
+function drawTextBox(context,textbox,padding) {
 	var words = textbox.text.split(' ');
 	var line = '';
 	var origtextboxy = textbox.y;
 	var height = 0;
-	var padding = 10;
+	var padding = padding;
 	var manyRows = false;
 	var width;
+    var offset;
 	 
 
 	for (var i = 0; i < words.length; i++) {
 		var testLine = line + words[i] + ' ';
 		var metrics = context.measureText(testLine);
 		var testWidth = metrics.width;
-		if (testWidth > textbox.maxWidth - padding && i > 0) {
+		if ((testWidth > (textbox.maxWidth - padding/2) && i > 0)  || words[i] == '\n') {
 			context.fillStyle = "white";
-			context.fillRect(textbox.x, textbox.y, textbox.maxWidth + padding, textbox.lineHeight);
+			context.fillRect(textbox.x, textbox.y, textbox.maxWidth + padding/2, textbox.lineHeight + padding);
 			context.font = '12pt Calibri';
-			context.fillStyle = '#333';
-			textbox.y += textbox.lineHeight;
-			height += textbox.lineHeight;
-			context.fillText(line, textbox.x + padding, textbox.y);
-			line = words[i] + ' ';
+            context.fillStyle = '#333';
+            if (manyRows){
+                textbox.y += textbox.lineHeight;
+                height += textbox.lineHeight;
+            }else {
+                textbox.y += textbox.lineHeight + padding/3;
+                height += textbox.lineHeight + padding/3;
+            }
+			context.fillText(line, textbox.x + padding/2, textbox.y - 5);
+
+            if (words[i] == '\n'){
+               line = '';
+            }else {
+               line = words[i] + ' ';
+            };
+
 			manyRows = true;
 		} else{
 			line = testLine;
 		}
 	}
 	if (manyRows == false) {
-		width = context.measureText(line).width + padding + 5;
+		width = context.measureText(line).width + padding;
+        offset = 0;
 	} else{
-		width = textbox.maxWidth + padding;
+		width = textbox.maxWidth + padding/2;
+        offset = 5;
 	}
 	context.fillStyle = "white";
-	context.fillRect(textbox.x, textbox.y, width, textbox.lineHeight + padding);
+	context.fillRect(textbox.x, textbox.y , width, textbox.lineHeight + padding);
 	context.font = '12pt Calibri';
 	context.fillStyle = '#333';
 	textbox.y += textbox.lineHeight;
-	context.fillText(line, textbox.x + padding, textbox.y);
+	context.fillText(line, textbox.x + padding/2, textbox.y - offset );
 	textbox.y = origtextboxy;
 	height += textbox.lineHeight + padding;
 	context.strokeRect(textbox.x, textbox.y, width, height);

@@ -42,7 +42,8 @@ function Smenu(height, width, bendAngle) {
 		darkColor : color1,
 		clockwise : null,
 		engine : false,
-		connected : false
+		connected : false,
+        visible : true
 	});
 	var cogimg = new Cog(cog);
 
@@ -255,7 +256,8 @@ function Smenu(height, width, bendAngle) {
 				clockwise : null,
 				engine : false,
 				connected : false,
-				parent : null
+				parent : null,
+                visible : true
 			});
 
 			world.addCog(cog);
@@ -296,8 +298,8 @@ function Smenu(height, width, bendAngle) {
 		else if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
 			// återställ det senaste borttagna kugghjulet från tempvariabeln
-			if (redoCogs.length == 0) {
-				return;
+			if (redoCogs.length < 1) {
+
 			} else {
 				var tempCog = redoCogs.pop();
 				cogs.push(tempCog);
@@ -306,8 +308,8 @@ function Smenu(height, width, bendAngle) {
 
 		else if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
-			if (cogs.length == 1) {
-				return;
+			if (cogs.length < 1) {
+
 			} else {
 				var tempCog = cogs.pop();
 				redoCogs.push(tempCog);
