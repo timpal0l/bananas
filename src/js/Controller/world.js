@@ -1,6 +1,15 @@
-function World() {
-	var isDrag = false;
+/*
+ *
+ * World is the class that handle the cog wheels, menus, tutorial.
+ * This includes update, draw and click events
+ *
+ */
 
+
+
+function World() {
+
+	var isDrag = false;
 	var mx;
 	var my;
 	// mouse coordinates
@@ -20,10 +29,13 @@ function World() {
 		return my;
 	};
 
+
+    //Create menus
 	this.sideMenu = new Smenu(450, 150, 20);
     this.colorMenu = new Colormenu(600,50,0);
 
-	
+
+    //Click event
     this.myClick = function(e){
         world.sideMenu.myClick(e);
         if (world.tutorial){
@@ -31,6 +43,7 @@ function World() {
         }
     }
 
+    //Start the tutorial
     this.startTutorial = function(){
         if (this.tutOn == false){
         this.tutorial = new Tutorial(context);
@@ -42,6 +55,7 @@ function World() {
         }
     }
 
+    //Add a new cog wheel
 	this.addCog = function(config) {
 		Logger("[World.addCog]: addCog called. Object:");
 		var cog = new Cog(config);
@@ -50,6 +64,7 @@ function World() {
 		Logger("[World.addCog]: end.");
 	};
 
+    //Call the objects draw functions
 	this.draw = function() {
 
 		this.sideMenu.draw();
@@ -77,6 +92,7 @@ function World() {
         }
 	};
 
+    //Call the objects update functions
 	this.update = function() {
 		var time = (new Date()).getTime();
 		var timeDiff = time - this.lastTime;
@@ -94,6 +110,7 @@ function World() {
 		this.lastTime = time;
 	};
 
+    //Change the cog wheels position to mouse position if it is in "drag mode"
 	this.myMove = function(e) {
 		if (isDrag) {
 			me.getMouse(e);
@@ -105,7 +122,7 @@ function World() {
 	};
 
 
-	// Use getImageData to check hitbox with new cog
+	// Use getImageData to check "hit box" with new cog
 	this.hitBox = function(e) {
 		this.getMouse(e);
 		var l = cogs.length;
@@ -135,11 +152,13 @@ function World() {
 		mySel = null;
 	};
 
+    //Mouse click down
 	this.myDown = function(e) {
 		mouse = e;
 		mousePressed = true;
 	};
 
+    //Mouse click up
 	this.myUp = function() {
 		isDrag = false;
 		canvas.onmousemove = null;
@@ -147,6 +166,7 @@ function World() {
 		mySel = null;
 	};
 
+    //Set the coordinates of the mouse position
 	this.getMouse = function(e) {
 		var element = canvas, offsetX = 0, offsetY = 0;
 		if (element.offsetParent) {
