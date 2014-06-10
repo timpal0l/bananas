@@ -1,3 +1,12 @@
+/*
+*
+* Main initiates the program.
+* It handles the main loop
+* Sets the variables and creates World
+*
+*/
+
+
 HEIGHT = 700;
 WIDTH = 1300;
 mousePressed = false;
@@ -17,6 +26,7 @@ window.onload = function() {
 };
 
 // Request frame from browser
+// if the browser does not exist update 60fps
 window.requestAnimFrame = (function() {
 	return window.requestAnimationFrame || window.webkitRequestAnimationFrame
 			|| window.mozRequestAnimationFrame || window.oRequestAnimationFrame
@@ -25,6 +35,7 @@ window.requestAnimFrame = (function() {
 			};
 })();
 
+// Set the main canvas, glasspane canvas and cog canvas
 function setCanvas() {
 
 	canvas = document.getElementById('myCanvas');
@@ -43,13 +54,12 @@ function setCanvas() {
 	cogcanvas.height = HEIGHT;
 	cogcanvas.width = WIDTH;
 
+    // Create the world
 	world = new World();
-
-	// @TODO get cog from the model.
-	// and the user should ofcourse send the data to the model :)
 
 	world.addCog(cogEngine);
 
+    //Add mouse listeners
 	canvas.onmousedown = world.myDown;
 	canvas.onmouseup = world.myUp;
 	canvas.onclick = world.myClick;
@@ -60,6 +70,7 @@ function setCanvas() {
 }
 
 // This is the animation loop, put all objects here!!
+// This is getting called as soon as the browser allows it to
 function animate() {
 	// update
 	world.update();
@@ -68,11 +79,12 @@ function animate() {
 		world.hitBox(mouse);
 	}
 
-	// clear
+	// clear contexts
 	context.clearRect(0, 0, WIDTH, HEIGHT);
 	gpctx.clearRect(0, 0, WIDTH, HEIGHT);
 	cogctx.clearRect(0, 0, WIDTH, HEIGHT);
 
+    //Draw
 	world.draw();
 
 	// request new frame
