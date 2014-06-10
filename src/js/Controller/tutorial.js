@@ -151,8 +151,6 @@ function Tutorial(ctx){
                 cogs[i].visible = true;
             }
         }
-        //this.tutctx.clearRect((world.sideMenu.wi / 2) - 55, ((world.sideMenu.he /4) - 55) + world.sideMenu.starty / 2, 100, 100);
-
 
     }
 
