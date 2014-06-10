@@ -1,6 +1,7 @@
-
-
-function drawSideMenu(menu) {
+/*
+ * The view handles all the drawing that needs to be done in the application
+ */
+function drawSideMenu(menu) { // Draw the border of the side menu
     context.beginPath();
 	context.moveTo(menu.startx , menu.starty);
     context.lineTo(menu.startx + menu.wi - menu.bendAngle,menu.starty);
@@ -11,20 +12,12 @@ function drawSideMenu(menu) {
     context.closePath();
 }
 
-function drawImg(img, x, y, w, h) {
+function drawImg(img, x, y, w, h) { // Draw image
 	context.drawImage(img, x, y, w, h);
 }
 
-function drawRectButton(button,context,style){
-    context.fillStyle = style;
-    context.fillRect(button.x,button.y,button.w,button.h);
-    context.font = '12pt Calibri';
-    context.fillStyle = '#333';
-    context.fillText(button.text,button.x + button.w/5,button.y + button.h/3*2);
-}
-
-function drawTextBox(context,textbox,padding) {
-	var words = textbox.text.split(' ');
+function drawTextBox(context,textbox,padding) { // Draw textbox for tooltip
+	var words = textbox.text.split(' '); // Split the text to get an array of words without spaces
 	var line = '';
 	var origtextboxy = textbox.y;
 	var height = 0;
@@ -34,16 +27,17 @@ function drawTextBox(context,textbox,padding) {
     var offset;
 	 
 
-	for (var i = 0; i < words.length; i++) {
-		var testLine = line + words[i] + ' ';
+	for (var i = 0; i < words.length; i++) { // Iterate through all words in the array
+		var testLine = line + words[i] + ' '; // A testline used to see if it fits or if a new rows have to be created
 		var metrics = context.measureText(testLine);
 		var testWidth = metrics.width;
-		if ((testWidth > (textbox.maxWidth - padding/2) && i > 0)  || words[i] == '\n') {
-			context.fillStyle = "white";
+		if ((testWidth > (textbox.maxWidth - padding/2) && i > 0)  || words[i] == '\n') { 
+			// If text won't fit in one line we can draw the textbox, line, and background that is above this line
+			context.fillStyle = "white"; // Start drawing the textbox
 			context.fillRect(textbox.x, textbox.y, textbox.maxWidth + padding/2, textbox.lineHeight + padding);
 			context.font = '12pt Calibri';
             context.fillStyle = '#333';
-            if (manyRows){
+            if (manyRows){ // Special case for text that won't fit in one row
                 textbox.y += textbox.lineHeight;
                 height += textbox.lineHeight;
             }else {
@@ -52,24 +46,25 @@ function drawTextBox(context,textbox,padding) {
             }
 			context.fillText(line, textbox.x + padding/2, textbox.y - 5);
 
-            if (words[i] == '\n'){
+            if (words[i] == '\n'){ // Special case for eventual linebreaks inside the textstring in the future
                line = '';
             }else {
                line = words[i] + ' ';
             };
 
 			manyRows = true;
-		} else{
+		} else{ // Set line to testLine if it fits inside the textbox
 			line = testLine;
 		}
 	}
-	if (manyRows == false) {
+	if (manyRows == false) { // Make the textbox just a little longer than the text in it, if it's only one row
 		width = context.measureText(line).width + padding;
         offset = 0;
-	} else{
+	} else{ // Otherwise use previously specified maxwidth
 		width = textbox.maxWidth + padding/2;
         offset = 5;
 	}
+	// Draw the last row and surround the textbox with a grey line
 	context.fillStyle = "white";
 	context.fillRect(textbox.x, textbox.y , width, textbox.lineHeight + padding);
 	context.font = '12pt Calibri';
@@ -82,7 +77,7 @@ function drawTextBox(context,textbox,padding) {
 }
 
 function drawCogShape(context, cog, numPoints, grd) {
-	// draw cog teeth
+	// Draw cog teeth
 	context.beginPath();
 	context.lineJoin = 'bevel';
 
@@ -114,7 +109,7 @@ function drawCogShape(context, cog, numPoints, grd) {
 	context.strokeStyle = cog.darkColor;
 	context.stroke();
 
-	// draw cog body
+	// Draw cog body
 	context.beginPath();
 	context.arc(cog.x, cog.y, cog.midRadius, 0, 2 * Math.PI, false);
 
@@ -124,7 +119,7 @@ function drawCogShape(context, cog, numPoints, grd) {
 	context.strokeStyle = cog.darkColor;
 	context.stroke();
 
-	// draw cog hole
+	// Draw cog hole
 	context.beginPath();
 	context.arc(cog.x, cog.y, cog.holeRadius, 0, 2 * Math.PI, false);
 	context.fillStyle = 'white';
