@@ -93,6 +93,7 @@ function World() {
 	};
 
     //Call the objects update functions
+    //Change the angle of the cogs, make them turn
 	this.update = function() {
 		var time = (new Date()).getTime();
 		var timeDiff = time - this.lastTime;
