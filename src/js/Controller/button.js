@@ -15,22 +15,26 @@ function Button(img, x, y, w, h, toolTipText) {
     this.showTT = false;
     this.visible = true;
 
-    if (img instanceof Cog){
-        this.originalOuterRadius = img.outerRadius;
+    if (img instanceof Cog){ // If the button is a cog instead of an image
+        this.originalOuterRadius = img.outerRadius; // Use the cogs parameters
         this.originalInnerRadius = img.innerRadius;
         this.originalMidRadius = img.midRadius;
         img.x = x + img.outerRadius;
         img.y = y + img.outerRadius;
     }
 
+    /*
+     * The buttons draw function.
+     */
+
 	this.draw = function() {
         if (this.visible){
-            if (img instanceof Cog){
+            if (img instanceof Cog){ // If it's a cog, use the cogs draw method
                 this.img.draw(context);
-            }else {
+            }else { // Otherwise draw image
                 drawImg(this.img, this.x, this.y, this.w, this.h);
             }
-            if (this.showTT == true && this.toolTip != null) {
+            if (this.showTT == true && this.toolTip != null) { // Show tooltip textbox if mouse is over button
                 this.toolTip.draw(context);
             }
         }
@@ -38,9 +42,13 @@ function Button(img, x, y, w, h, toolTipText) {
 
 	};
 
+	/*
+	 * Toggle mouseover feedback, i.e. feedback that the mouse is over it.
+	 */
+
 	this.toggle = function() {
-		if (this.enlarged) {
-			if (this.img instanceof Cog) {
+		if (this.enlarged) { // If the button is enlarged, make it smaller
+			if (this.img instanceof Cog) { // Special case for cog
 				this.img.outerRadius = this.originalOuterRadius;
 				this.img.innerRadius = this.originalInnerRadius;
 				this.img.midRadius = this.originalMidRadius;
@@ -49,7 +57,7 @@ function Button(img, x, y, w, h, toolTipText) {
 				this.h = this.originalH;
 			}
 
-		} else {
+		} else { // If the button isn't enlarged, make it bigger
 			if (this.img instanceof Cog) {
 				this.img.outerRadius *= 1.06;
 				this.img.innerRadius *= 1.06;
