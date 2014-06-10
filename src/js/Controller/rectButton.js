@@ -17,10 +17,12 @@ function RectButton(x,y,w,h,style,text,option,canvas){
 
 }
 
+//Call draw in view
 RectButton.prototype.draw = function(){
     drawRectButton(this,this.context,this.style);
 }
 
+//Check if the click is on the button
 RectButton.prototype.myClick = function(e){
     this.me.getMouse(e);
     if (mx > this.x && mx < this.w + this.x && my > this.y
@@ -29,6 +31,7 @@ RectButton.prototype.myClick = function(e){
     }
 }
 
+//Get mouse coordinates
 RectButton.prototype.getMouse = function(e) {
     var element = canvas, offsetX = 0, offsetY = 0;
     if (element.offsetParent) {

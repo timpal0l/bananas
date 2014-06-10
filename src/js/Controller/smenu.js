@@ -101,7 +101,7 @@ function Smenu(height, width, bendAngle) {
 	this.greenButton = new Button(greenimg,-30, 530, 30, 30, ttGreen);
 	this.yellowButton = new Button(yellowimg,-30, 565, 25, 25, ttYellow);
 
-
+    //put the buttons in an array
     buttons.push(this.cogButton,
     	this.tutButton,
     	this.redoButton,
@@ -115,7 +115,7 @@ function Smenu(height, width, bendAngle) {
         this.redButton
         )
 
-
+    //Call the buttons draw function
 	this.draw = function() {
 		drawSideMenu(this);
         for(var i = 0; i < buttons.length; i++){
@@ -123,14 +123,18 @@ function Smenu(height, width, bendAngle) {
         }
 		
 	};
+
+    //Stop the menu from moving
 	this.stop = function() {
 		this.dir = 0;
 	};
+
+    //Stop the menu from moving
 	this.cMenustop = function() {
         world.colorMenu.dir = 0;
 	};
 
-	// Update the position of the menu
+	// Update the position of the menu and its buttons
 	this.update = function() {
 
 		if (moveR == 0 && this.dir == 1) {
@@ -175,6 +179,7 @@ function Smenu(height, width, bendAngle) {
 		}
 	};
 
+    // Update the position of the color menu and its buttons
 	this.colorUpdate = function() {
         if (world.colorMenu.dir == 1) {
 			world.colorMenu.startx += this.linearSpeed * world.colorMenu.dir;
@@ -197,6 +202,7 @@ function Smenu(height, width, bendAngle) {
 		}
 	};
 
+    //Hover over the buttons, change the size of the button
     this.myHover = function(e) {
         for(var i = 0; i < buttons.length; i++){
             me.getMouse(e);
@@ -222,6 +228,7 @@ function Smenu(height, width, bendAngle) {
 
 
     //Clicking on buttons
+    //Check hit on all buttons
 	this.myClick = function(e) {
 
 		me.getMouse(e);
@@ -238,7 +245,7 @@ function Smenu(height, width, bendAngle) {
 		var yell = me.yellowButton;
 
 
-
+        //Create new cog
 		if (mx > cogB.x && mx < cogB.w + cogB.x && my > cogB.y
 				&& my < cogB.h + cogB.y) {
 			var cog = new Cog({
@@ -263,15 +270,19 @@ function Smenu(height, width, bendAngle) {
 			world.addCog(cog);
 		}
 
+        //Change direction
 		else if (mx > rarrow.x && mx < rarrow.w + rarrow.x && my > rarrow.y
 				&& my < rarrow.h + rarrow.y) {
 			me.dir = 1;
 		}
 
+        //Change direction
 		else if (mx > larrow.x && mx < larrow.w + larrow.x && my > larrow.y
 				&& my < larrow.h + larrow.y) {
 			me.dir = -1;
 		}
+
+        //Move color menu
 		else if (mx > brush.x && mx < brush.w + brush.x && my > brush.y
 				&& my < brush.h + brush.y) {
             Logger(world.colorMenu.dir);
@@ -289,12 +300,15 @@ function Smenu(height, width, bendAngle) {
 
 		}
 
+
+        //Start tutorial
         else if (mx > tutB.x && mx < tutB.w + tutB.x && my > tutB.y
             && my < tutB.h + tutB.y) {
 
             world.startTutorial();
         }
 
+        //Redo cog
 		else if (mx > redo.x && mx < redo.w + redo.x && my > redo.y
 				&& my < redo.h + redo.y) {
 			// återställ det senaste borttagna kugghjulet från tempvariabeln
@@ -306,6 +320,7 @@ function Smenu(height, width, bendAngle) {
 			}
 		}
 
+        //Undo cog
 		else if (mx > undo.x && mx < undo.w + undo.x && my > undo.y
 				&& my < undo.h + undo.y) {
 			if (cogs.length < 1) {
@@ -318,6 +333,7 @@ function Smenu(height, width, bendAngle) {
 			// variabel
 		}
 
+        //Change color of cog to red
 		else if (mx > red.x && mx < red.w + red.x && my > red.y
 				&& my < red.h + red.y) {
 			color = '#FF9E9D';
@@ -326,6 +342,7 @@ function Smenu(height, width, bendAngle) {
 			cogB.img.darkColor = color1;
 		}
 
+        //Change color of cog to blue
 		else if (mx > blue.x && mx < blue.w + blue.x && my > blue.y
 				&& my < blue.h + blue.y) {
 			color = '#2f42d4';
@@ -334,6 +351,7 @@ function Smenu(height, width, bendAngle) {
 			cogB.img.darkColor = color1;
 		}
 
+        //Change color of cog to green
 		else if (mx > green.x && mx < green.w + green.x && my > green.y
 				&& my < green.h + green.y) {
 			color = '#3dd42f';
@@ -341,6 +359,8 @@ function Smenu(height, width, bendAngle) {
 			cogB.img.lightColor = color;
 			cogB.img.darkColor = color1;
 		}
+
+        //Change color of cog to yellow
 		else if (mx > yell.x && mx < yell.w + yell.x && my > yell.y
 				&& my < yell.h + yell.y) {
 			color1 = '#f2bc18';
@@ -352,6 +372,8 @@ function Smenu(height, width, bendAngle) {
 
 	};
 
+
+    //Get mouse coordinates
 	this.getMouse = function(e) {
 		var element = canvas, offsetX = 0, offsetY = 0;
 		if (element.offsetParent) {
